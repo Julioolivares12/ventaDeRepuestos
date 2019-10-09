@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaDeRepuestos.Helpers;
 
 namespace VentaDeRepuestos
 {
@@ -15,6 +16,36 @@ namespace VentaDeRepuestos
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Image image = Image.FromFile("repuestoslogo.jpg");
+            pbLogo.Image = image;
+            pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void PbLogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void BtnLogin_Click(object sender, EventArgs e)
+        {
+            var pass = Encriptar.encriptarPassword(txtPassword.Text.Trim());
+            var result = await Consultas.loginAsync(txtCorreo.Text.Trim(), pass);
+
+
+            if (result.Read())
+            {
+                this.Hide();
+               new Menu().Show();
+
+            }
+            else
+            {
+                MessageBox.Show("error correo o contraseña incorrectos");
+            }
         }
     }
 }
