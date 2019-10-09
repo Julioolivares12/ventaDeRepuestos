@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaDeRepuestos.Administrador;
 
 namespace VentaDeRepuestos
 {
     public partial class Menu : Form
     {
         private int childFormNumber = 0;
-
+        Empleados empleados;
         public Menu()
         {
             InitializeComponent();
@@ -68,12 +69,12 @@ namespace VentaDeRepuestos
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Visible = toolBarToolStripMenuItem.Checked;
+           
         }
 
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            statusStrip.Visible = statusBarToolStripMenuItem.Checked;
+            
         }
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,6 +103,34 @@ namespace VentaDeRepuestos
             {
                 childForm.Close();
             }
+        }
+
+        private void EmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if(empleados == null)
+            {
+                empleados = new Empleados();
+                empleados.MdiParent = this;
+                empleados.FormClosed += new FormClosedEventHandler(cerrarEmpleados);
+                empleados.Show();
+            }
+            else
+            {
+                empleados.Activate();
+            }
+        }
+
+        private void cerrarEmpleados(object sender, FormClosedEventArgs e)
+        {
+            empleados = null;
+        }
+
+        private void SalirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 form = new Form1();
+            form.Show();
         }
     }
 }

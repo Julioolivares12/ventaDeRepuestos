@@ -13,11 +13,19 @@ namespace VentaDeRepuestos
 {
     public partial class Form1 : Form
     {
+        public static Form1 form1;
         public Form1()
         {
             InitializeComponent();
         }
-
+        public Form1 getInstance()
+        {
+            if(form1 == null)
+            {
+                form1 = new Form1();
+            }
+            return form1;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             Image image = Image.FromFile("repuestoslogo.jpg");
@@ -40,6 +48,7 @@ namespace VentaDeRepuestos
             {
                 this.Hide();
                new Menu().Show();
+                
 
             }
             else
