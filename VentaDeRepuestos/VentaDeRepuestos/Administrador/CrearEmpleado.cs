@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace VentaDeRepuestos.Administrador
 {
-    public partial class Empleados : Form
+    public partial class CrearEmpleado : Form
     {
-        public Empleados()
+        public CrearEmpleado()
         {
             InitializeComponent();
         }
 
-        private void BtnCerrar_Click(object sender, EventArgs e)
+        private void BtnCrear_Click(object sender, EventArgs e)
         {
-            Close();
-        }
 
-        private void BtnNuevo_Click(object sender, EventArgs e)
-        {
-            CrearEmpleado crearEmpleado = new CrearEmpleado();
-            crearEmpleado.ShowDialog();
         }
     }
 }
