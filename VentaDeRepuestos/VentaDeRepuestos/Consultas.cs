@@ -95,16 +95,56 @@ namespace VentaDeRepuestos
                 }
             }
         }
-
-        public static async Task<Int32> crearEpleadoAsync(string primerNombre,
+        /// <summary>
+        /// metodo para insertar empleados en la bd
+        /// </summary>
+        /// <param name="idPerfil"></param>
+        /// <param name="idCargo"></param>
+        /// <param name="primerNombre"></param>
+        /// <param name="segundoNombre"></param>
+        /// <param name="primerApellido"></param>
+        /// <param name="segundoApellido"></param>
+        /// <param name="direccion"></param>
+        /// <param name="telefono"></param>
+        /// <param name="fechaNac"></param>
+        /// <param name="sexo"></param>
+        /// <param name="estado"></param>
+        /// <param name="email"></param>
+        /// <returns>retorna la cantidad de filas afectadas</returns>
+        public static async Task<Int32> crearEpleadoAsync(string idPerfil,string idCargo, string primerNombre,
             string segundoNombre,string primerApellido,
             string segundoApellido,
             string direccion,
             string telefono,
             string fechaNac,char sexo,char estado,string email)
         {
-            var query = "insert into USUARIOS ()";
-            return 2;
+            var query = "insert into USUARIOS (ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
+                "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
+                " VALUES (@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
+
+            //parametros para la insercion de datos
+            var pass = primerNombre + primerApellido + "123";
+            var parameteridCargo = new SqlParameter("@ID_CARGO",idCargo);
+            var parameteridPerfil = new SqlParameter("@ID_PERFIL", idPerfil);
+            var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",primerNombre);
+            var parameterSegundoNombre = new SqlParameter("@SEGUNDONOMBRE",segundoNombre);
+            var parameterPrimerApellido = new SqlParameter("@PRIMERAPELLIDO",primerApellido);
+            var parameterSegundoApellido = new SqlParameter("@SEGUNDOAPELLIDO",segundoApellido);
+            var parameterDireccion = new SqlParameter("@DIRECCION",direccion);
+            var parameterTelefono = new SqlParameter("@TELEFONO",telefono);
+            var parameterFechaNac = new SqlParameter("@FECHANAC",fechaNac);
+            var parameterSexo = new SqlParameter("@SEXO",sexo);
+            var parameterEstado = new SqlParameter("@ESTADO_CIVIL",estado);
+            var parameterEmail = new SqlParameter("@EMAIL",email);
+            var parameterPass = new SqlParameter("@PASS",pass);
+
+            
+            var con = await Conexion.conectarAsync();
+            var rows = await ExecuteNonQuery(con,query,CommandType.Text,parameteridCargo
+                ,parameteridPerfil,parameterPrimerNombre,parameterSegundoNombre,parameterPrimerApellido
+                ,parameterSegundoApellido,parameterDireccion,parameterTelefono,parameterFechaNac,parameterSexo,parameterEstado,parameterEmail,parameterPass);
+
+                return rows;
         }
 
         public static async Task<SqlDataReader> getPerfilesAsync()
@@ -143,6 +183,22 @@ namespace VentaDeRepuestos
                     var dt = new DataTable();
                     adapter.Fill(dt);
                     return dt;
+                }
+            }
+        }
+
+        public static DataTable getEmpleados()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM USUARIOS", con))
+                {
+                    var adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    return dataTable;
                 }
             }
         }

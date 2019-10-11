@@ -41,7 +41,7 @@
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtFechaNac = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.cbSexo = new System.Windows.Forms.ComboBox();
@@ -161,12 +161,12 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Fecha Nacimiento";
             // 
-            // textBox7
+            // txtFechaNac
             // 
-            this.textBox7.Location = new System.Drawing.Point(160, 313);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(191, 22);
-            this.textBox7.TabIndex = 13;
+            this.txtFechaNac.Location = new System.Drawing.Point(160, 313);
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(191, 22);
+            this.txtFechaNac.TabIndex = 13;
             // 
             // label8
             // 
@@ -302,7 +302,7 @@
             this.Controls.Add(this.cbSexo);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtFechaNac);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label6);
@@ -339,7 +339,7 @@
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtFechaNac;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbSexo;

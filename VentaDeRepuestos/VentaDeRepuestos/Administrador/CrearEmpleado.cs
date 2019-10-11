@@ -15,16 +15,41 @@ namespace VentaDeRepuestos.Administrador
     {
         char s;
         char est;
-        string id_cargo;
-        string id_pefil;
+        private string id_cargo;
+        private string id_pefil;
+
+        public string Id_cargo { get => id_cargo; set => id_cargo = value; }
+        public string Id_pefil { get => id_pefil; set => id_pefil = value; }
+
         public CrearEmpleado()
         {
             InitializeComponent();
         }
 
-        private void BtnCrear_Click(object sender, EventArgs e)
+        private async void BtnCrear_Click(object sender, EventArgs e)
         {
+            var pNombre = txtPrimerNombre.Text.Trim();
+            var sNombre = txtSegundoNombre.Text.Trim();
+            var pApellido = txtPrimerApellido.Text.Trim();
+            var sApellido = txtSegundoApellido.Text.Trim();
+            var direccion = txtDireccion.Text;
+            var telefono = txtTelefono.Text.Trim();
+            var fechaNac = txtFechaNac.Text.Trim();
+            var correo = txtEmail.Text.Trim();
 
+
+
+            var r = await Consultas.crearEpleadoAsync(Id_pefil,Id_cargo
+                ,pNombre,sNombre,pApellido,sApellido,direccion,telefono,fechaNac,s,est,correo); 
+            if(r > 0)
+            {
+                MessageBox.Show("agregado con exito");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("ocurrio un error");
+            }
         }
 
         private void CbSexo_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,41 +66,37 @@ namespace VentaDeRepuestos.Administrador
 
         private void CbCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+
+             Id_cargo = cbCargo.SelectedValue.ToString();
 
         }
 
         private void CbPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Id_pefil = cbPerfil.SelectedValue.ToString();
         }
 
         private void CrearEmpleado_Load(object sender, EventArgs e)
         {
-            //cargarPerfiles();
+            cargarPerfiles();
             cargarCargos();
         }
 
-        private async void cargarPerfiles()
+        private  void cargarPerfiles()
         {
-            var dt = new DataTable();
-            using (var reader = await Consultas.getPerfilesAsync())
-            {
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    dt.Load(reader);
-                    cbPerfil.DataSource = dt;
-                    cbPerfil.ValueMember = "ID_PERFIL";
-                    cbPerfil.DisplayMember = "NOMBRE";
+            
+            cbPerfil.ValueMember = "ID_PERFIL";
+            cbPerfil.DisplayMember = "NOMBRE";
+            cbPerfil.DataSource = Consultas.getPerfiles();
 
-                }
-            }
         }
-        private async void cargarCargos()
+        private void cargarCargos()
         {
-            cbCargo.DataSource = Consultas.getCargos();
+            
             cbCargo.ValueMember = "ID_CARGO";
             cbCargo.DisplayMember = "NOMBRE";
+            cbCargo.DataSource = Consultas.getCargos();
         }
     }
 }
