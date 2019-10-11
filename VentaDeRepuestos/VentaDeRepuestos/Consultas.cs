@@ -119,5 +119,32 @@ namespace VentaDeRepuestos
                 }
             }
         }
+
+
+        public static DataTable getCargos()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var adapter = new SqlDataAdapter("SELECT ID_CARGO,NOMBRE FROM CARGOS", con))
+                {
+                    var dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static DataTable getPerfiles()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var adapter = new SqlDataAdapter("SELECT ID_PERFIL,NOMBRE FROM PERFIL", con))
+                {
+                    var dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
     }
 }

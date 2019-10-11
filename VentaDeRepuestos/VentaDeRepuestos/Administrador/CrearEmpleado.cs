@@ -52,7 +52,7 @@ namespace VentaDeRepuestos.Administrador
         private void CrearEmpleado_Load(object sender, EventArgs e)
         {
             //cargarPerfiles();
-            //cargarCargos();
+            cargarCargos();
         }
 
         private async void cargarPerfiles()
@@ -73,24 +73,9 @@ namespace VentaDeRepuestos.Administrador
         }
         private async void cargarCargos()
         {
-            var s = "select ID_CARGO,NOMBRE FROM CARGOS";
-            var cmdType = CommandType.Text;
-            SqlParameter[] parameters = {
-
-            };
-
-            using (var reader =await Consultas.ExecuteReader(s, cmdType, parameters))
-            {
-                var dt = new DataTable();
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    dt.Load(reader);
-                    cbCargo.DataSource = dt;
-                    cbCargo.DisplayMember = "NOMBRE";
-                    cbCargo.ValueMember = "ID_CARGO";
-                }
-            }
+            cbCargo.DataSource = Consultas.getCargos();
+            cbCargo.ValueMember = "ID_CARGO";
+            cbCargo.DisplayMember = "NOMBRE";
         }
     }
 }
