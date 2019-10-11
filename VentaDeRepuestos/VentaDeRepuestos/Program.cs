@@ -17,6 +17,7 @@ namespace VentaDeRepuestos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Menu());
+
         }
     }
 }
