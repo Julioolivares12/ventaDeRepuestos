@@ -50,6 +50,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnCrear = new System.Windows.Forms.Button();
+            this.cbCargo = new System.Windows.Forms.ComboBox();
+            this.cbPerfil = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -192,17 +196,19 @@
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(74, 24);
             this.cbSexo.TabIndex = 16;
+            this.cbSexo.SelectedIndexChanged += new System.EventHandler(this.CbSexo_SelectedIndexChanged);
             // 
             // cbEstadoCivil
             // 
             this.cbEstadoCivil.FormattingEnabled = true;
             this.cbEstadoCivil.Items.AddRange(new object[] {
-            "M",
-            "F"});
+            "C",
+            "S"});
             this.cbEstadoCivil.Location = new System.Drawing.Point(157, 408);
             this.cbEstadoCivil.Name = "cbEstadoCivil";
             this.cbEstadoCivil.Size = new System.Drawing.Size(74, 24);
             this.cbEstadoCivil.TabIndex = 18;
+            this.cbEstadoCivil.SelectedIndexChanged += new System.EventHandler(this.CbEstadoCivil_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -235,19 +241,59 @@
             this.btnCrear.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.btnCrear.FlatAppearance.BorderSize = 2;
             this.btnCrear.ForeColor = System.Drawing.Color.Black;
-            this.btnCrear.Location = new System.Drawing.Point(494, 102);
+            this.btnCrear.Location = new System.Drawing.Point(494, 220);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(75, 23);
+            this.btnCrear.Size = new System.Drawing.Size(85, 32);
             this.btnCrear.TabIndex = 21;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = false;
             this.btnCrear.Click += new System.EventHandler(this.BtnCrear_Click);
+            // 
+            // cbCargo
+            // 
+            this.cbCargo.FormattingEnabled = true;
+            this.cbCargo.Location = new System.Drawing.Point(494, 110);
+            this.cbCargo.Name = "cbCargo";
+            this.cbCargo.Size = new System.Drawing.Size(230, 24);
+            this.cbCargo.TabIndex = 22;
+            this.cbCargo.SelectedIndexChanged += new System.EventHandler(this.CbCargo_SelectedIndexChanged);
+            // 
+            // cbPerfil
+            // 
+            this.cbPerfil.FormattingEnabled = true;
+            this.cbPerfil.Location = new System.Drawing.Point(494, 168);
+            this.cbPerfil.Name = "cbPerfil";
+            this.cbPerfil.Size = new System.Drawing.Size(230, 24);
+            this.cbPerfil.TabIndex = 23;
+            this.cbPerfil.SelectedIndexChanged += new System.EventHandler(this.CbPerfil_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(421, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 17);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Cargo";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(424, 168);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 17);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Perfil";
             // 
             // CrearEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cbPerfil);
+            this.Controls.Add(this.cbCargo);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label11);
@@ -272,6 +318,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CrearEmpleado";
             this.Text = "CrearEmpleado";
+            this.Load += new System.EventHandler(this.CrearEmpleado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +348,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.ComboBox cbCargo;
+        private System.Windows.Forms.ComboBox cbPerfil;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

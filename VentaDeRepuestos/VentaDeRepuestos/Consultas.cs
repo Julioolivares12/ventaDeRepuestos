@@ -95,5 +95,29 @@ namespace VentaDeRepuestos
                 }
             }
         }
+
+        public static async Task<Int32> crearEpleadoAsync(string primerNombre,
+            string segundoNombre,string primerApellido,
+            string segundoApellido,
+            string direccion,
+            string telefono,
+            string fechaNac,char sexo,char estado,string email)
+        {
+            var query = "insert into USUARIOS ()";
+            return 2;
+        }
+
+        public static async Task<SqlDataReader> getPerfilesAsync()
+        {
+            using (var con = await Conexion.conectarAsync())
+            {
+                var s = "select ID_PERFIL,NOMBRE from PERFIL";
+                using (var cmd = new SqlCommand(s,con))
+                {
+                    await con.OpenAsync();
+                    return await cmd.ExecuteReaderAsync();
+                }
+            }
+        }
     }
 }
