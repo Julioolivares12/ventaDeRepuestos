@@ -27,5 +27,10 @@ namespace VentaDeRepuestos.Administrador
             CrearEmpleado crearEmpleado = new CrearEmpleado();
             crearEmpleado.Show();
         }
+
+        private void Empleados_Load(object sender, EventArgs e)
+        {
+            dgvEmpleados.DataSource = Consultas.getEmpleados();
+        }
     }
 }

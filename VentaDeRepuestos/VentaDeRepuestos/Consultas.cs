@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VentaDeRepuestos.Helpers;
 
 namespace VentaDeRepuestos
 {
@@ -123,7 +124,9 @@ namespace VentaDeRepuestos
                 " VALUES (@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
 
             //parametros para la insercion de datos
-            var pass = primerNombre + primerApellido + "123";
+            //se hacen las letras en minusculas
+            var pass = primerNombre.ToLower() + primerApellido.ToLower() + "123";
+            var passE = Encriptar.encriptarPassword(pass);
             var parameteridCargo = new SqlParameter("@ID_CARGO",idCargo);
             var parameteridPerfil = new SqlParameter("@ID_PERFIL", idPerfil);
             var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",primerNombre);
@@ -136,7 +139,7 @@ namespace VentaDeRepuestos
             var parameterSexo = new SqlParameter("@SEXO",sexo);
             var parameterEstado = new SqlParameter("@ESTADO_CIVIL",estado);
             var parameterEmail = new SqlParameter("@EMAIL",email);
-            var parameterPass = new SqlParameter("@PASS",pass);
+            var parameterPass = new SqlParameter("@PASS",passE);
 
             
             var con = await Conexion.conectarAsync();
