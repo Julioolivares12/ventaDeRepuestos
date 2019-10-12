@@ -83,7 +83,7 @@ namespace VentaDeRepuestos
         /// <param name="commandType">tipo de comando</param>
         /// <param name="parameters">parametros de la consulta</param>
         /// <returns></returns>
-        public static async Task<SqlDataReader> ExecuteReader(string commandText, CommandType commandType, params SqlParameter[] parameters)
+        public static async Task<SqlDataReader> ExecuteReaderAsync(string commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (var con = await Conexion.conectarAsync())
             {
@@ -94,6 +94,20 @@ namespace VentaDeRepuestos
                     await con.OpenAsync();
 
                     return await cmd.ExecuteReaderAsync();
+                }
+            }
+        }
+
+        public static SqlDataReader ExecuteReader(string commandText, CommandType commandType, params SqlParameter[] parameters)
+        {
+            using (var con  = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand(commandText, con))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
+                    con.Open();
+                    return cmd.ExecuteReader();
                 }
             }
         }

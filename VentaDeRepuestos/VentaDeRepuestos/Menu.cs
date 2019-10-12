@@ -14,7 +14,7 @@ namespace VentaDeRepuestos
     public partial class Menu : Form
     {
         private int childFormNumber = 0;
-        Empleados empleados;
+        MantenimientoEmpleado empleados;
         public Menu()
         {
             InitializeComponent();
@@ -110,7 +110,7 @@ namespace VentaDeRepuestos
             
             if(empleados == null)
             {
-                empleados = new Empleados();
+                empleados = new MantenimientoEmpleado();
                 empleados.MdiParent = this;
                 empleados.FormClosed += new FormClosedEventHandler(cerrarEmpleados);
                 empleados.Show();

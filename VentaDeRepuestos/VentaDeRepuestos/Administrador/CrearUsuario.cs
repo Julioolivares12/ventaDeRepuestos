@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaDeRepuestos.formulariosBase;
 using VentaDeRepuestos.Modelos;
 
 namespace VentaDeRepuestos.Administrador
 {
-    public partial class CrearEmpleado : Form
+    public partial class CrearUsuario : CrearEmpleado
     {
-        char s;
-        char est;
-        private string id_cargo;
-        private string id_pefil;
-
-        public string Id_cargo { get => id_cargo; set => id_cargo = value; }
-        public string Id_pefil { get => id_pefil; set => id_pefil = value; }
-
-        public CrearEmpleado()
+        
+        public CrearUsuario()
         {
             InitializeComponent();
         }
@@ -40,7 +33,7 @@ namespace VentaDeRepuestos.Administrador
 
 
             var user = new Usuario();
-            user.ID_CARGO = id_cargo;
+            user.ID_CARGO = Id_cargo;
             user.ID_PERFIL = Id_pefil;
             user.PrimerNombre = pNombre;
             user.SegundoNombre = sNombre;
@@ -50,8 +43,8 @@ namespace VentaDeRepuestos.Administrador
             user.Telefono = telefono;
             user.FechaNac = fechaNac;
             user.Email = correo;
-            var r = await Consultas.crearEpleadoAsync(user); 
-            if(r > 0)
+            var r = await Consultas.crearEpleadoAsync(user);
+            if (r > 0)
             {
                 MessageBox.Show("agregado con exito");
                 this.Close();
@@ -60,6 +53,12 @@ namespace VentaDeRepuestos.Administrador
             {
                 MessageBox.Show("ocurrio un error");
             }
+        }
+
+        private void CrearUsuario_Load(object sender, EventArgs e)
+        {
+            cargarCargos();
+            cargarPerfiles();
         }
 
         private void CbSexo_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,39 +73,19 @@ namespace VentaDeRepuestos.Administrador
             est = Convert.ToChar(cbEstadoCivil.Items[i].ToString());
         }
 
+        private void TxtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void CbCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
-             Id_cargo = cbCargo.SelectedValue.ToString();
-
+            Id_cargo = cbCargo.SelectedValue.ToString();
         }
 
         private void CbPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
             Id_pefil = cbPerfil.SelectedValue.ToString();
-        }
-
-        private void CrearEmpleado_Load(object sender, EventArgs e)
-        {
-            cargarPerfiles();
-            cargarCargos();
-        }
-
-        private  void cargarPerfiles()
-        {
-            
-            cbPerfil.ValueMember = "ID_PERFIL";
-            cbPerfil.DisplayMember = "NOMBRE";
-            cbPerfil.DataSource = Consultas.getPerfiles();
-
-        }
-        private void cargarCargos()
-        {
-            
-            cbCargo.ValueMember = "ID_CARGO";
-            cbCargo.DisplayMember = "NOMBRE";
-            cbCargo.DataSource = Consultas.getCargos();
         }
     }
 }

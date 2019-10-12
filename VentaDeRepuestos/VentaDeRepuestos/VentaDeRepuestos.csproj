@@ -47,17 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador\CrearEmpleado.cs">
+    <Compile Include="Administrador\ActualizarEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administrador\CrearEmpleado.Designer.cs">
-      <DependentUpon>CrearEmpleado.cs</DependentUpon>
+    <Compile Include="Administrador\ActualizarEmpleado.Designer.cs">
+      <DependentUpon>ActualizarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\CrearEmpleado2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\CrearEmpleado2.Designer.cs">
+      <DependentUpon>CrearEmpleado2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\CrearUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\CrearUsuario.Designer.cs">
+      <DependentUpon>CrearUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\Empleados.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administrador\Empleados.Designer.cs">
       <DependentUpon>Empleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoEmpleado.Designer.cs">
+      <DependentUpon>MantenimientoEmpleado.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\PuntoVenta.cs">
       <SubType>Form</SubType>
@@ -73,6 +91,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="formulariosBase\CrearEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formulariosBase\CrearEmpleado.Designer.cs">
+      <DependentUpon>CrearEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formulariosBase\Mantenimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formulariosBase\Mantenimientos.Designer.cs">
+      <DependentUpon>Mantenimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Encriptar.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -84,14 +114,29 @@
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Administrador\CrearEmpleado.resx">
-      <DependentUpon>CrearEmpleado.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\ActualizarEmpleado.resx">
+      <DependentUpon>ActualizarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\CrearEmpleado2.resx">
+      <DependentUpon>CrearEmpleado2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\CrearUsuario.resx">
+      <DependentUpon>CrearUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\Empleados.resx">
       <DependentUpon>Empleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\MantenimientoEmpleado.resx">
+      <DependentUpon>MantenimientoEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formulariosBase\CrearEmpleado.resx">
+      <DependentUpon>CrearEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formulariosBase\Mantenimientos.resx">
+      <DependentUpon>Mantenimientos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

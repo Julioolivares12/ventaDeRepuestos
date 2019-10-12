@@ -1,6 +1,6 @@
 ﻿namespace VentaDeRepuestos.Administrador
 {
-    partial class CrearEmpleado
+    partial class CrearEmpleado2
     {
         /// <summary>
         /// Required designer variable.

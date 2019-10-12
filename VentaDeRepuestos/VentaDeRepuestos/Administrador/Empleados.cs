@@ -24,7 +24,7 @@ namespace VentaDeRepuestos.Administrador
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            CrearEmpleado crearEmpleado = new CrearEmpleado();
+            CrearUsuario crearEmpleado = new CrearUsuario();
             crearEmpleado.Show();
         }
 
