@@ -13,8 +13,8 @@ namespace VentaDeRepuestos.Modelos
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
         public string FechaNac{ get; set; }
-        public string Sexo { get; set; }
-        public string EstadoCivil { get; set; }
+        public char Sexo { get; set; }
+        public char EstadoCivil { get; set; }
        
 
 

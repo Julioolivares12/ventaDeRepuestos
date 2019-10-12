@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VentaDeRepuestos.Helpers;
+using VentaDeRepuestos.Modelos;
 
 namespace VentaDeRepuestos
 {
@@ -112,12 +113,7 @@ namespace VentaDeRepuestos
         /// <param name="estado"></param>
         /// <param name="email"></param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
-        public static async Task<Int32> crearEpleadoAsync(string idPerfil,string idCargo, string primerNombre,
-            string segundoNombre,string primerApellido,
-            string segundoApellido,
-            string direccion,
-            string telefono,
-            string fechaNac,char sexo,char estado,string email)
+        public static async Task<Int32> crearEpleadoAsync(Usuario usuario)
         {
             var query = "insert into USUARIOS (ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
                 "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
@@ -125,20 +121,20 @@ namespace VentaDeRepuestos
 
             //parametros para la insercion de datos
             //se hacen las letras en minusculas
-            var pass = primerNombre.ToLower() + primerApellido.ToLower() + "123";
+            var pass = usuario.PrimerNombre.ToLower() + usuario.PrimerApellido.ToLower() + "123";
             var passE = Encriptar.encriptarPassword(pass);
-            var parameteridCargo = new SqlParameter("@ID_CARGO",idCargo);
-            var parameteridPerfil = new SqlParameter("@ID_PERFIL", idPerfil);
-            var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",primerNombre);
-            var parameterSegundoNombre = new SqlParameter("@SEGUNDONOMBRE",segundoNombre);
-            var parameterPrimerApellido = new SqlParameter("@PRIMERAPELLIDO",primerApellido);
-            var parameterSegundoApellido = new SqlParameter("@SEGUNDOAPELLIDO",segundoApellido);
-            var parameterDireccion = new SqlParameter("@DIRECCION",direccion);
-            var parameterTelefono = new SqlParameter("@TELEFONO",telefono);
-            var parameterFechaNac = new SqlParameter("@FECHANAC",fechaNac);
-            var parameterSexo = new SqlParameter("@SEXO",sexo);
-            var parameterEstado = new SqlParameter("@ESTADO_CIVIL",estado);
-            var parameterEmail = new SqlParameter("@EMAIL",email);
+            var parameteridCargo = new SqlParameter("@ID_CARGO",usuario.ID_CARGO);
+            var parameteridPerfil = new SqlParameter("@ID_PERFIL", usuario.ID_PERFIL);
+            var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",usuario.PrimerNombre);
+            var parameterSegundoNombre = new SqlParameter("@SEGUNDONOMBRE",usuario.SegundoNombre);
+            var parameterPrimerApellido = new SqlParameter("@PRIMERAPELLIDO",usuario.PrimerApellido);
+            var parameterSegundoApellido = new SqlParameter("@SEGUNDOAPELLIDO",usuario.SegundoApellido);
+            var parameterDireccion = new SqlParameter("@DIRECCION",usuario.Direccion);
+            var parameterTelefono = new SqlParameter("@TELEFONO",usuario.Telefono);
+            var parameterFechaNac = new SqlParameter("@FECHANAC",usuario.FechaNac);
+            var parameterSexo = new SqlParameter("@SEXO",usuario.Sexo);
+            var parameterEstado = new SqlParameter("@ESTADO_CIVIL",usuario.EstadoCivil);
+            var parameterEmail = new SqlParameter("@EMAIL",usuario.Email);
             var parameterPass = new SqlParameter("@PASS",passE);
 
             

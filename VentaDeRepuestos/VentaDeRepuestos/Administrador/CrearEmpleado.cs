@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VentaDeRepuestos.Modelos;
 
 namespace VentaDeRepuestos.Administrador
 {
@@ -38,9 +39,18 @@ namespace VentaDeRepuestos.Administrador
             var correo = txtEmail.Text.Trim();
 
 
-
-            var r = await Consultas.crearEpleadoAsync(Id_pefil,Id_cargo
-                ,pNombre,sNombre,pApellido,sApellido,direccion,telefono,fechaNac,s,est,correo); 
+            var user = new Usuario();
+            user.ID_CARGO = id_cargo;
+            user.ID_PERFIL = Id_pefil;
+            user.PrimerNombre = pNombre;
+            user.SegundoNombre = sNombre;
+            user.PrimerApellido = pApellido;
+            user.SegundoApellido = sApellido;
+            user.Direccion = direccion;
+            user.Telefono = telefono;
+            user.FechaNac = fechaNac;
+            user.Email = correo;
+            var r = await Consultas.crearEpleadoAsync(user); 
             if(r > 0)
             {
                 MessageBox.Show("agregado con exito");
