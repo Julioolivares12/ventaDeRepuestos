@@ -106,7 +106,7 @@ namespace VentaDeRepuestos
                 {
                     cmd.CommandType = commandType;
                     cmd.Parameters.AddRange(parameters);
-                    con.Open();
+                    //con.Open();
                     return cmd.ExecuteReader();
                 }
             }
@@ -212,6 +212,20 @@ namespace VentaDeRepuestos
                     adapter.Fill(dataTable);
 
                     return dataTable;
+                }
+            }
+        }
+
+        public static SqlDataReader getEmpleadoByID(string query,string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+
+                using (var cmd = new SqlCommand(query,con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_USUARIO", id);
+                    return cmd.ExecuteReader();
                 }
             }
         }

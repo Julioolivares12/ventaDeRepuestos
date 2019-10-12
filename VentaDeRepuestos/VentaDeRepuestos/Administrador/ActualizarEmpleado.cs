@@ -23,7 +23,8 @@ namespace VentaDeRepuestos.Administrador
 
         public ActualizarEmpleado(string id)
         {
-            if(id != null)
+            InitializeComponent();
+            if (id != null)
             {
                 ID_USUARIO = id;
             }
@@ -41,8 +42,10 @@ namespace VentaDeRepuestos.Administrador
             var query = "SELECT U.PRIMERNOMBRE,U.SEGUNDONOMBRE,U.PRIMERAPELLIDO,U.SEGUNDOAPELLIDO,U.DIRECCION,U.TELEFONO" +
                 ",U.FECHANAC,U.SEXO,U.ESTADO_CIVIL,U.EMAIL, P.NOMBRE AS PERFIL,C.NOMBRE AS CARGO FROM USUARIOS AS U INNER JOIN PERFIL AS P" +
                 " ON U.ID_PERFIL = P.ID_PERFIL INNER JOIN CARGOS AS C ON U.ID_CARGO = C.ID_CARGO WHERE U.ID_USUARIO=@ID_USUARIO";
-            SqlParameter parameter = new SqlParameter("@ID_USUARIO",ID_USUARIO);
-            var result = Consultas.ExecuteReader(query,CommandType.Text,parameter);
+           // SqlParameter parameter = new SqlParameter("@ID_USUARIO",ID_USUARIO);
+
+            var result = Consultas.getEmpleadoByID(query,ID_USUARIO);
+           // var result = Consultas.ExecuteReader(query,CommandType.Text,parameter);
             if (result.Read())
             {
                 var usuario = new Usuario();
