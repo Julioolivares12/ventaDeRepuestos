@@ -95,7 +95,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gridDatos);
             this.Name = "Mantenimientos";
-            this.Text = "Mantenimientos";
             ((System.ComponentModel.ISupportInitialize)(this.gridDatos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

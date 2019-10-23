@@ -59,6 +59,12 @@
     <Compile Include="Administrador\CrearEmpleado2.Designer.cs">
       <DependentUpon>CrearEmpleado2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\CrearModeloDeVehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\CrearModeloDeVehiculo.Designer.cs">
+      <DependentUpon>CrearModeloDeVehiculo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\CrearUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,12 @@
     </Compile>
     <Compile Include="Administrador\MantenimientoEmpleado.Designer.cs">
       <DependentUpon>MantenimientoEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoModelosVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoModelosVehiculos.Designer.cs">
+      <DependentUpon>MantenimientoModelosVehiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\PuntoVenta.cs">
       <SubType>Form</SubType>
@@ -97,6 +109,12 @@
     <Compile Include="formulariosBase\CrearEmpleado.Designer.cs">
       <DependentUpon>CrearEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="formulariosBase\CrearModeloVehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formulariosBase\CrearModeloVehiculo.Designer.cs">
+      <DependentUpon>CrearModeloVehiculo.cs</DependentUpon>
+    </Compile>
     <Compile Include="formulariosBase\Mantenimientos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,7 +128,13 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\BaseModel.cs" />
+    <Compile Include="Modelos\ClaseDeVehiculo.cs" />
+    <Compile Include="Modelos\ModeloVehiculo.cs" />
+    <Compile Include="Modelos\ParteVehiculo.cs" />
     <Compile Include="Modelos\Persona.cs" />
+    <Compile Include="Modelos\Repuesto.cs" />
+    <Compile Include="Modelos\TipoVehiculo.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\CrearEmpleado2.resx">
       <DependentUpon>CrearEmpleado2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\CrearModeloDeVehiculo.resx">
+      <DependentUpon>CrearModeloDeVehiculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
@@ -129,11 +156,17 @@
     <EmbeddedResource Include="Administrador\MantenimientoEmpleado.resx">
       <DependentUpon>MantenimientoEmpleado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\MantenimientoModelosVehiculos.resx">
+      <DependentUpon>MantenimientoModelosVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formulariosBase\CrearEmpleado.resx">
       <DependentUpon>CrearEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formulariosBase\CrearModeloVehiculo.resx">
+      <DependentUpon>CrearModeloVehiculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formulariosBase\Mantenimientos.resx">
       <DependentUpon>Mantenimientos.cs</DependentUpon>

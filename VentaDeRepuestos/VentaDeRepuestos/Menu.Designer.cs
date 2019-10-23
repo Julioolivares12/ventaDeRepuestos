@@ -40,6 +40,8 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoEmpreadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modelosDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -87,9 +89,12 @@
             // 
             // foliosYAsignacionesToolStripMenuItem
             // 
+            this.foliosYAsignacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mantenimientoEmpreadosToolStripMenuItem,
+            this.modelosDeVehiculoToolStripMenuItem});
             this.foliosYAsignacionesToolStripMenuItem.Name = "foliosYAsignacionesToolStripMenuItem";
-            this.foliosYAsignacionesToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
-            this.foliosYAsignacionesToolStripMenuItem.Text = "Folios y Asignaciones";
+            this.foliosYAsignacionesToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.foliosYAsignacionesToolStripMenuItem.Text = "Mantenimientos";
             // 
             // clientesToolStripMenuItem
             // 
@@ -122,6 +127,20 @@
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
             this.salirToolStripMenuItem.Text = "salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.SalirToolStripMenuItem_Click);
+            // 
+            // mantenimientoEmpreadosToolStripMenuItem
+            // 
+            this.mantenimientoEmpreadosToolStripMenuItem.Name = "mantenimientoEmpreadosToolStripMenuItem";
+            this.mantenimientoEmpreadosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.mantenimientoEmpreadosToolStripMenuItem.Text = "Mantenimiento empreados";
+            this.mantenimientoEmpreadosToolStripMenuItem.Click += new System.EventHandler(this.MantenimientoEmpreadosToolStripMenuItem_Click);
+            // 
+            // modelosDeVehiculoToolStripMenuItem
+            // 
+            this.modelosDeVehiculoToolStripMenuItem.Name = "modelosDeVehiculoToolStripMenuItem";
+            this.modelosDeVehiculoToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.modelosDeVehiculoToolStripMenuItem.Text = "Modelos de vehiculo";
+            this.modelosDeVehiculoToolStripMenuItem.Click += new System.EventHandler(this.ModelosDeVehiculoToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -158,6 +177,8 @@
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoEmpreadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modelosDeVehiculoToolStripMenuItem;
     }
 }
 

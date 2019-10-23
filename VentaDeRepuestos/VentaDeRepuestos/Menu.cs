@@ -15,6 +15,7 @@ namespace VentaDeRepuestos
     {
         private int childFormNumber = 0;
         MantenimientoEmpleado empleados;
+        MantenimientoModelosVehiculos mantenimientoModelosVehiculos;
         public Menu()
         {
             InitializeComponent();
@@ -126,11 +127,44 @@ namespace VentaDeRepuestos
             empleados = null;
         }
 
+        private void cerrarModelosDeVehiculo(object sender,FormClosedEventArgs e)
+        {
+            mantenimientoModelosVehiculos = null;
+        }
+
         private void SalirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
             Form1 form = new Form1();
             form.Show();
+        }
+
+        private void MantenimientoEmpreadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(empleados == null)
+            {
+                empleados = new MantenimientoEmpleado();
+                empleados.MdiParent = this;
+                empleados.FormClosed += new FormClosedEventHandler(cerrarEmpleados);
+                empleados.Show();
+            }
+            else
+            {
+                empleados.Activate();
+            }
+        }
+
+        private void ModelosDeVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(mantenimientoModelosVehiculos == null){
+                mantenimientoModelosVehiculos = new MantenimientoModelosVehiculos();
+                mantenimientoModelosVehiculos.MdiParent = this;
+                mantenimientoModelosVehiculos.FormClosed += new FormClosedEventHandler(cerrarModelosDeVehiculo);
+            }
+            else
+            {
+                mantenimientoModelosVehiculos.Activate();
+            }
         }
     }
 }

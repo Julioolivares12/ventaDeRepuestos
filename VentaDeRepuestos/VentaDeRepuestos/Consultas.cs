@@ -20,7 +20,7 @@ namespace VentaDeRepuestos
         /// <param name="commandType">hay tres tipos de comando StoreProcedure,Text,TableDirect tableDirect es solo para OLE DB </param>
         /// <param name="parameters">parametros de sql</param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
-        public static async Task<Int32> ExecuteNonQuery(SqlConnection connection, string commandText
+        public static async Task<Int32> ExecuteNonQueryAsync(SqlConnection connection, string commandText
             , CommandType commandType, params SqlParameter[] parameters)
         {
             using (connection)
@@ -35,7 +35,20 @@ namespace VentaDeRepuestos
                 }
             }
         }
-
+        public static Int32 ExecuteNonQuery(SqlConnection connection, string commandText
+            , CommandType commandType, params SqlParameter[] parameters)
+        {
+            using (connection)
+            {
+                using (var cmd = new SqlCommand(commandText,connection))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
+                    connection.Open();
+                    return  cmd.ExecuteNonQuery();
+                }
+            }
+        }
         /// <summary>
         /// metodo para hacer login
         /// </summary>
@@ -127,7 +140,7 @@ namespace VentaDeRepuestos
         /// <param name="estado"></param>
         /// <param name="email"></param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
-        public static async Task<Int32> crearEpleadoAsync(Usuario usuario)
+        public static  Int32 crearEpleadoAsync(Usuario usuario)
         {
             var query = "insert into USUARIOS (ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
                 "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
@@ -152,12 +165,16 @@ namespace VentaDeRepuestos
             var parameterPass = new SqlParameter("@PASS",passE);
 
             
-            var con = await Conexion.conectarAsync();
-            var rows = await ExecuteNonQuery(con,query,CommandType.Text,parameteridCargo
-                ,parameteridPerfil,parameterPrimerNombre,parameterSegundoNombre,parameterPrimerApellido
-                ,parameterSegundoApellido,parameterDireccion,parameterTelefono,parameterFechaNac,parameterSexo,parameterEstado,parameterEmail,parameterPass);
+            var con =  Conexion.conectar();
+            using (con)
+            {
+                var rows = ExecuteNonQuery(con, query, CommandType.Text, parameteridCargo
+                    , parameteridPerfil, parameterPrimerNombre, parameterSegundoNombre, parameterPrimerApellido
+                    , parameterSegundoApellido, parameterDireccion, parameterTelefono, parameterFechaNac, parameterSexo, parameterEstado, parameterEmail, parameterPass);
 
                 return rows;
+            }
+                
         }
 
         public static async Task<SqlDataReader> getPerfilesAsync()
@@ -229,5 +246,78 @@ namespace VentaDeRepuestos
                 }
             }
         }
+
+        public static DataTable getModelosVehiculos()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("Select * from MODELOSVEHICULOS",con))
+                {
+                    var adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataTable data = new DataTable();
+                    adapter.Fill(data);
+                    return data;
+                }
+            }
+        }
+        public static DataTable getClasesDeVehiculos()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("select * from CLASESVEHICULOS",con))
+                {
+                    var adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    var data = new DataTable();
+                    adapter.Fill(data);
+                    return data;
+                }
+            }
+        }
+
+        public static ClaseDeVehiculo GetClaseDeVehiculoByID(string id)
+        {
+            ClaseDeVehiculo claseDeVehiculo = new ClaseDeVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd =new SqlCommand("SELECT * FROM CLASESVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            claseDeVehiculo.ID_ClaseVeg = reader["ID_CLASESVEH"].ToString();
+                            claseDeVehiculo.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+                    }
+                    
+                }
+            }
+            return claseDeVehiculo;
+        }
+
+        public static ModeloVehiculo getModeloDeVehiculoByID(string id)
+        {
+            ModeloVehiculo modelo = new ModeloVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM MODELOSVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            modelo.ID = reader["ID_MODELOVEH"].ToString();
+                            modelo.DESCRIPCION = reader["DESCRIPCION"].ToString();
+                        }
+                    }
+                }
+            }
+            return modelo;
+        }
+       
     }
 }
