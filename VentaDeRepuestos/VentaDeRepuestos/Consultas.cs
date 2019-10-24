@@ -548,6 +548,116 @@ namespace VentaDeRepuestos
         }
         #endregion
 
+        #region CRUD PARTES DE VEHICULO
+        public static List<ParteVehiculo> GetParteVehiculos()
+        {
+            List<ParteVehiculo> parteVehiculos = new List<ParteVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM PARTESVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var partes = new ParteVehiculo();
+                            partes.ID = reader["ID_PARTEVEH"].ToString();
+                            partes.Descripcion = reader["DESCRIPCION"].ToString();
+                            parteVehiculos.Add(partes);
+                        }
+                        return parteVehiculos;
+                    }
+                    else
+                    {
+                        return parteVehiculos;
+                    }
+                }
+            }
+        }
+        public static ParteVehiculo GetParteVehiculo(string id)
+        {
+            var p = new ParteVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd= new  SqlCommand("SELECT * FROM PARTESVEHICULOS WHERE ID_PARTEVEH=@ID_PARTEVEH", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_PARTEVEH", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            p.ID = reader["ID_PARTEVEH"].ToString();
+                            p.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+                      
+                    }
+                }
+            }
+            return p;
+        }
+
+        public static bool InsertarParteVehiculo(ParteVehiculo parteVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("INSERT INTO PARTESVEHICULOS (ID_PARTEVEH, DESCRIPCION) VALUES(@ID_PARTEVEH,@DESCRIPCION) ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_PARTEVEH",parteVehiculo.ID),new SqlParameter("@DESCRIPCION",parteVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r>0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool ActualizarParteVehiculo(ParteVehiculo parteVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("UPDATE PARTESVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_PARTEVEH=@ID_PARTEVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_PARTEVEH",parteVehiculo.ID),new SqlParameter("@DESCRIPCION",parteVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool EliminarParteVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("DELETE FROM PARTESVEHICULOS WHERE ID_PARTEVEH=@ID_PARTEVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_PARTEVEH", id));
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        #endregion
+
 
     }
 }

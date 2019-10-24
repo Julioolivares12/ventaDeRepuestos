@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VentaDeRepuestos.Modelos
 {
-    class ParteVehiculo
+    class ParteVehiculo : BaseModel
     {
-        public string ID_ParteVeh { get; set; }
+       
         public string Descripcion { get; set; }
     }
 }
