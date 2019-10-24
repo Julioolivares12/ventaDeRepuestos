@@ -522,6 +522,30 @@ namespace VentaDeRepuestos
                 }
             }
         }
+
+        public static bool EliminarTipoVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd =new  SqlCommand("DELETE FROM  TIPOVEHICULOS WHERE ID_TIPOVEH=@ID_TIPOVEH",con))
+                {
+                    var parameterID = new SqlParameter("@ID_TIPOVEH", id);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Add(parameterID);
+
+                    var r = cmd.ExecuteNonQuery();
+                    if(r > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+        }
         #endregion
 
 
