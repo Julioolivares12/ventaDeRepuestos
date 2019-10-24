@@ -31,6 +31,7 @@ namespace VentaDeRepuestos.Administrador
             if (ID!= null)
             {
                 var mod = new TipoVehiculo();
+                mod.ID = ID;
                 mod.Descripcion = txtDescripcion.Text;
                 var r = Consultas.ActualizarTipoVehiculo(mod);
                 if (r)
