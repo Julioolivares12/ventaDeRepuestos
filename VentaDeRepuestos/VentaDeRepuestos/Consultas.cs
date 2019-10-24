@@ -297,7 +297,12 @@ namespace VentaDeRepuestos
             }
             return claseDeVehiculo;
         }
-
+        #region CRUD DE MODELOVEHICULO
+        /// <summary>
+        /// busca un ModeloVehiculo en la bd 
+        /// </summary>
+        /// <param name="id">id de un modelo</param>
+        /// <returns>retorna un objeto de la clase ModeloVehiculo</returns>
         public static ModeloVehiculo getModeloDeVehiculoByID(string id)
         {
             ModeloVehiculo modelo = new ModeloVehiculo();
@@ -318,6 +323,39 @@ namespace VentaDeRepuestos
             }
             return modelo;
         }
-       
+        public static Int32 insertarModeloVehiculo(ModeloVehiculo modelo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "INSERT INTO MODELOSVEHICULOS (ID_MODELOVEH,DESCRIPCION) VALUES (@ID_MODELOVEH,@DESCRIPCION)";
+                var IDPARAMETER = new SqlParameter("@ID_MODELOVEH",modelo.ID);
+                var DESCRIPCIONPARAMETER = new SqlParameter("@DESCRIPCION",modelo.DESCRIPCION);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,IDPARAMETER,DESCRIPCIONPARAMETER);
+                return r;
+            }
+        }
+
+        public static bool eliminarModeloVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "DELETE FROM MODELOSVEHICULOS WHERE ID_MODELOVEH=@ID_MODELOVEH";
+                var parameter = new SqlParameter("@ID_MODELOVEH",id);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,parameter);
+                if(r != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        
+        
+        #endregion fin crud
+
+
     }
 }
