@@ -65,6 +65,12 @@
     <Compile Include="Administrador\CrearModeloDeVehiculo.Designer.cs">
       <DependentUpon>CrearModeloDeVehiculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\CrearTipoVehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\CrearTipoVehiculo.Designer.cs">
+      <DependentUpon>CrearTipoVehiculo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrador\CrearUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,12 @@
     </Compile>
     <Compile Include="Administrador\MantenimientoModelosVehiculos.Designer.cs">
       <DependentUpon>MantenimientoModelosVehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoTiposVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\MantenimientoTiposVehiculos.Designer.cs">
+      <DependentUpon>MantenimientoTiposVehiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\PuntoVenta.cs">
       <SubType>Form</SubType>
@@ -147,6 +159,9 @@
     <EmbeddedResource Include="Administrador\CrearModeloDeVehiculo.resx">
       <DependentUpon>CrearModeloDeVehiculo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\CrearTipoVehiculo.resx">
+      <DependentUpon>CrearTipoVehiculo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrador\CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador\MantenimientoModelosVehiculos.resx">
       <DependentUpon>MantenimientoModelosVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\MantenimientoTiposVehiculos.resx">
+      <DependentUpon>MantenimientoTiposVehiculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

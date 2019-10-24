@@ -37,7 +37,7 @@ namespace VentaDeRepuestos.Administrador
             actualizarEmpleado.ShowDialog();
         }
 
-        private async void BtnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
             var idActual = getID();
             if(idActual != null)
@@ -45,7 +45,7 @@ namespace VentaDeRepuestos.Administrador
                 var query = "DELETE * FROM USUARIOS WHERE ID_USUARIO = @ID_USUARIO";
                 var con =  Conexion.conectar();
                 SqlParameter parameter = new SqlParameter("@ID_USUARIO",idActual); 
-                var result = await Consultas.ExecuteNonQuery(con,query,CommandType.Text,parameter);
+                var result = Consultas.ExecuteNonQuery(con,query,CommandType.Text,parameter);
                 if(result > 0)
                 {
                     MessageBox.Show("eliminado con exito");

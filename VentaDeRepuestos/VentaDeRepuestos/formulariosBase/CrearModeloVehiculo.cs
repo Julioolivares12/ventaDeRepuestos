@@ -12,6 +12,7 @@ namespace VentaDeRepuestos.formulariosBase
 {
     public partial class CrearModeloVehiculo : Form
     {
+        public string ID { get; set; }
         public CrearModeloVehiculo()
         {
             InitializeComponent();

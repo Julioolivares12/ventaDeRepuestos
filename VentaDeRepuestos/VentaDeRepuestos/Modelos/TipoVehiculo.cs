@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VentaDeRepuestos.Modelos
 {
-    class TipoVehiculo
+    class TipoVehiculo : BaseModel
     {
-        public string ID_TipoVeh { get; set; }
+        
         public string Descripcion { get; set; }
     }
 }

@@ -435,5 +435,95 @@ namespace VentaDeRepuestos
         #endregion fin crud
 
 
+        #region crud tipovehiculo
+        public static List<TipoVehiculo> GetTipoVehiculos()
+        {
+            var lista = new List<TipoVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("Select * from TIPOVEHICULOS", con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var tipo = new TipoVehiculo();
+                            tipo.ID = reader["ID_TIPOVEH"].ToString();
+                            tipo.Descripcion = reader["DESCRIPCION"].ToString();
+                            lista.Add(tipo);
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+        public static TipoVehiculo GetTipoVehiculoByID(string id)
+        {
+            var tipo = new TipoVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM TIPOVEHICULOS WHERE ID_TIPOVEH=@ID_TIPOVEH",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            tipo.ID = reader["ID_TIPOVEH"].ToString();
+                            tipo.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+
+                    }
+                }
+            }
+            return tipo;
+        }
+        public static bool InsertarTipoVehiculo(TipoVehiculo tipo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "INSERT INTO TIPOVEHICULOS (ID_TIPOVEH,DESCRIPCION) VALUES (@ID_TIPOVEH,@DESCRIPCION)";
+                var ID = Guid.NewGuid().ToString();
+                var IDParam = new SqlParameter("@ID_TIPOVEH",ID);
+                var DescripcionParam = new SqlParameter("@DESCRIPCION",tipo.Descripcion);
+                
+                var ro = ExecuteNonQuery(con,query,CommandType.Text,IDParam,DescripcionParam);
+
+                if (ro > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool ActualizarTipoVehiculo(TipoVehiculo tipo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "UPDATE TIPOVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_TIPOVEH=@ID_TIPOVEH";
+               
+                var IDParam = new SqlParameter("@ID_TIPOVEH", tipo.ID);
+                var DescripcionParam = new SqlParameter("@DESCRIPCION", tipo.Descripcion);
+
+                var ro = ExecuteNonQuery(con, query, CommandType.Text, IDParam, DescripcionParam);
+
+                if (ro > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        #endregion
+
+
     }
 }
