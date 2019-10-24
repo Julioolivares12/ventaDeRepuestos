@@ -74,6 +74,7 @@
             this.btnCrear.FlatAppearance.BorderSize = 2;
             this.btnCrear.Location = new System.Drawing.Point(470, 202);
             this.btnCrear.Text = "Actualizar";
+            this.btnCrear.Click += new System.EventHandler(this.BtnCrear_Click);
             // 
             // txtCargoActual
             // 

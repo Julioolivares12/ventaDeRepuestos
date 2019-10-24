@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VentaDeRepuestos.Helpers;
 using VentaDeRepuestos.Modelos;
+using System.Collections;
 
 namespace VentaDeRepuestos
 {
@@ -142,14 +143,16 @@ namespace VentaDeRepuestos
         /// <returns>retorna la cantidad de filas afectadas</returns>
         public static  Int32 crearEpleadoAsync(Usuario usuario)
         {
-            var query = "insert into USUARIOS (ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
+            var query = "insert into USUARIOS (ID_USUARIO,ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
                 "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
-                " VALUES (@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
+                " VALUES (@ID_USUARIO,@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
 
             //parametros para la insercion de datos
             //se hacen las letras en minusculas
             var pass = usuario.PrimerNombre.ToLower() + usuario.PrimerApellido.ToLower() + "123";
             var passE = Encriptar.encriptarPassword(pass);
+            var ID_USER = Guid.NewGuid().ToString();
+            var parameterIDUSUARIO = new SqlParameter("@ID_USUARIO",ID_USER);
             var parameteridCargo = new SqlParameter("@ID_CARGO",usuario.ID_CARGO);
             var parameteridPerfil = new SqlParameter("@ID_PERFIL", usuario.ID_PERFIL);
             var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",usuario.PrimerNombre);
@@ -168,13 +171,51 @@ namespace VentaDeRepuestos
             var con =  Conexion.conectar();
             using (con)
             {
-                var rows = ExecuteNonQuery(con, query, CommandType.Text, parameteridCargo
+                var rows = ExecuteNonQuery(con, query, CommandType.Text,parameterIDUSUARIO,parameteridCargo
                     , parameteridPerfil, parameterPrimerNombre, parameterSegundoNombre, parameterPrimerApellido
                     , parameterSegundoApellido, parameterDireccion, parameterTelefono, parameterFechaNac, parameterSexo, parameterEstado, parameterEmail, parameterPass);
 
                 return rows;
             }
                 
+        }
+        public static Int32 ActualizarEpleado(Usuario usuario)
+        {
+            var query = "insert into USUARIOS (ID_USUARIO,ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
+                "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
+                " VALUES (@ID_USUARIO,@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
+
+            //parametros para la insercion de datos
+            //se hacen las letras en minusculas
+            var pass = usuario.PrimerNombre.ToLower() + usuario.PrimerApellido.ToLower() + "123";
+            var passE = Encriptar.encriptarPassword(pass);
+            var ID_USER = Guid.NewGuid().ToString();
+            var parameterIDUSUARIO = new SqlParameter("@ID_USUARIO", ID_USER);
+            var parameteridCargo = new SqlParameter("@ID_CARGO", usuario.ID_CARGO);
+            var parameteridPerfil = new SqlParameter("@ID_PERFIL", usuario.ID_PERFIL);
+            var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE", usuario.PrimerNombre);
+            var parameterSegundoNombre = new SqlParameter("@SEGUNDONOMBRE", usuario.SegundoNombre);
+            var parameterPrimerApellido = new SqlParameter("@PRIMERAPELLIDO", usuario.PrimerApellido);
+            var parameterSegundoApellido = new SqlParameter("@SEGUNDOAPELLIDO", usuario.SegundoApellido);
+            var parameterDireccion = new SqlParameter("@DIRECCION", usuario.Direccion);
+            var parameterTelefono = new SqlParameter("@TELEFONO", usuario.Telefono);
+            var parameterFechaNac = new SqlParameter("@FECHANAC", usuario.FechaNac);
+            var parameterSexo = new SqlParameter("@SEXO", usuario.Sexo);
+            var parameterEstado = new SqlParameter("@ESTADO_CIVIL", usuario.EstadoCivil);
+            var parameterEmail = new SqlParameter("@EMAIL", usuario.Email);
+            var parameterPass = new SqlParameter("@PASS", passE);
+
+
+            var con = Conexion.conectar();
+            using (con)
+            {
+                var rows = ExecuteNonQuery(con, query, CommandType.Text, parameterIDUSUARIO, parameteridCargo
+                    , parameteridPerfil, parameterPrimerNombre, parameterSegundoNombre, parameterPrimerApellido
+                    , parameterSegundoApellido, parameterDireccion, parameterTelefono, parameterFechaNac, parameterSexo, parameterEstado, parameterEmail, parameterPass);
+
+                return rows;
+            }
+
         }
 
         public static async Task<SqlDataReader> getPerfilesAsync()
@@ -353,7 +394,44 @@ namespace VentaDeRepuestos
             }
         }
         
-        
+        public static Int32 actualizarModeloVehiculo(ModeloVehiculo modelo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "UPDATE MODELOSVEHICULOS SET DESCRIPCION WHERE ID_MODELOVEH=@ID_MODELOVEH";
+                
+                var descripcionParameter = new SqlParameter("@ID_MODELOVEH",modelo.ID);
+                var idParameter = new SqlParameter("@ID_MODELOVEH", modelo.ID);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,descripcionParameter,idParameter);
+
+                return r;
+            }
+        }
+        /*
+        public static List<ClaseDeVehiculo> getModelosVehiculos()
+        {
+            List<ClaseDeVehiculo> lista = new List<ClaseDeVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM MODELOSVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var modelo = new ClaseDeVehiculo();
+                            modelo.ID_ClaseVeg = reader["ID_MODELOVEH"].ToString();
+                            modelo.Descripcion = reader["DESCRIPCION"].ToString();
+
+                            lista.Add(modelo);
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+        */
         #endregion fin crud
 
 

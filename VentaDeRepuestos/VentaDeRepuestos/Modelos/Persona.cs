@@ -8,6 +8,7 @@ namespace VentaDeRepuestos.Modelos
 {
    public class Persona
     {
+        public string ID { get; set; }
         public string PrimerNombre { get; set; }
         public string SegundoNombre { get; set; }
         public string PrimerApellido { get; set; }
