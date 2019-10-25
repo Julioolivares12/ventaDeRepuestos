@@ -35,13 +35,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.puntoDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foliosYAsignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoEmpreadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modelosDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arqueoDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mantenimientoEmpreadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modelosDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clasesDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeVehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.partesDeVehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,10 +94,27 @@
             // 
             this.foliosYAsignacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mantenimientoEmpreadosToolStripMenuItem,
-            this.modelosDeVehiculoToolStripMenuItem});
+            this.modelosDeVehiculoToolStripMenuItem,
+            this.clasesDeVehiculoToolStripMenuItem,
+            this.tiposDeVehiculosToolStripMenuItem,
+            this.partesDeVehiculosToolStripMenuItem});
             this.foliosYAsignacionesToolStripMenuItem.Name = "foliosYAsignacionesToolStripMenuItem";
             this.foliosYAsignacionesToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.foliosYAsignacionesToolStripMenuItem.Text = "Mantenimientos";
+            // 
+            // mantenimientoEmpreadosToolStripMenuItem
+            // 
+            this.mantenimientoEmpreadosToolStripMenuItem.Name = "mantenimientoEmpreadosToolStripMenuItem";
+            this.mantenimientoEmpreadosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.mantenimientoEmpreadosToolStripMenuItem.Text = "Mantenimiento empreados";
+            this.mantenimientoEmpreadosToolStripMenuItem.Click += new System.EventHandler(this.MantenimientoEmpreadosToolStripMenuItem_Click);
+            // 
+            // modelosDeVehiculoToolStripMenuItem
+            // 
+            this.modelosDeVehiculoToolStripMenuItem.Name = "modelosDeVehiculoToolStripMenuItem";
+            this.modelosDeVehiculoToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.modelosDeVehiculoToolStripMenuItem.Text = "Modelos de vehiculo";
+            this.modelosDeVehiculoToolStripMenuItem.Click += new System.EventHandler(this.ModelosDeVehiculoToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
@@ -128,19 +148,26 @@
             this.salirToolStripMenuItem.Text = "salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.SalirToolStripMenuItem_Click);
             // 
-            // mantenimientoEmpreadosToolStripMenuItem
+            // clasesDeVehiculoToolStripMenuItem
             // 
-            this.mantenimientoEmpreadosToolStripMenuItem.Name = "mantenimientoEmpreadosToolStripMenuItem";
-            this.mantenimientoEmpreadosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.mantenimientoEmpreadosToolStripMenuItem.Text = "Mantenimiento empreados";
-            this.mantenimientoEmpreadosToolStripMenuItem.Click += new System.EventHandler(this.MantenimientoEmpreadosToolStripMenuItem_Click);
+            this.clasesDeVehiculoToolStripMenuItem.Name = "clasesDeVehiculoToolStripMenuItem";
+            this.clasesDeVehiculoToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.clasesDeVehiculoToolStripMenuItem.Text = "Clases de vehiculo";
+            this.clasesDeVehiculoToolStripMenuItem.Click += new System.EventHandler(this.ClasesDeVehiculoToolStripMenuItem_Click);
             // 
-            // modelosDeVehiculoToolStripMenuItem
+            // tiposDeVehiculosToolStripMenuItem
             // 
-            this.modelosDeVehiculoToolStripMenuItem.Name = "modelosDeVehiculoToolStripMenuItem";
-            this.modelosDeVehiculoToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.modelosDeVehiculoToolStripMenuItem.Text = "Modelos de vehiculo";
-            this.modelosDeVehiculoToolStripMenuItem.Click += new System.EventHandler(this.ModelosDeVehiculoToolStripMenuItem_Click);
+            this.tiposDeVehiculosToolStripMenuItem.Name = "tiposDeVehiculosToolStripMenuItem";
+            this.tiposDeVehiculosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.tiposDeVehiculosToolStripMenuItem.Text = "tipos de vehiculos";
+            this.tiposDeVehiculosToolStripMenuItem.Click += new System.EventHandler(this.TiposDeVehiculosToolStripMenuItem_Click);
+            // 
+            // partesDeVehiculosToolStripMenuItem
+            // 
+            this.partesDeVehiculosToolStripMenuItem.Name = "partesDeVehiculosToolStripMenuItem";
+            this.partesDeVehiculosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
+            this.partesDeVehiculosToolStripMenuItem.Text = "partes de vehiculos";
+            this.partesDeVehiculosToolStripMenuItem.Click += new System.EventHandler(this.PartesDeVehiculosToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -179,6 +206,9 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mantenimientoEmpreadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modelosDeVehiculoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clasesDeVehiculoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeVehiculosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem partesDeVehiculosToolStripMenuItem;
     }
 }
 

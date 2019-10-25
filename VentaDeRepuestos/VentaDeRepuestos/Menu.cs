@@ -16,6 +16,10 @@ namespace VentaDeRepuestos
         private int childFormNumber = 0;
         MantenimientoEmpleado empleados;
         MantenimientoModelosVehiculos mantenimientoModelosVehiculos;
+        MantenimientoClacesDeVehiculos clacesDeVehiculos;
+        MantenimientoModelosVehiculos modelosVehiculos;
+        MantenimientoTiposVehiculos tiposVehiculos;
+        MantenimientoPartesDeVehiculos partesDeVehiculos;
         public Menu()
         {
             InitializeComponent();
@@ -165,6 +169,64 @@ namespace VentaDeRepuestos
             {
                 mantenimientoModelosVehiculos.Activate();
             }
+        }
+
+        private void ClasesDeVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(clacesDeVehiculos == null)
+            {
+                clacesDeVehiculos = new MantenimientoClacesDeVehiculos();
+                clacesDeVehiculos.MdiParent = this;
+                clacesDeVehiculos.FormClosed += new FormClosedEventHandler(cerrarClasesDevehiculos);
+            }
+            else
+            {
+                clacesDeVehiculos.Activate();
+            }
+        }
+
+        private void cerrarClasesDevehiculos(object sender, FormClosedEventArgs e)
+        {
+            clacesDeVehiculos = null;
+        }
+
+        private void TiposDeVehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tiposVehiculos == null)
+            {
+                tiposVehiculos = new MantenimientoTiposVehiculos();
+                tiposVehiculos.MdiParent = this;
+                tiposVehiculos.FormClosed += new FormClosedEventHandler(cerrarTiposVehiculos);
+            }
+            else
+            {
+                tiposVehiculos.Activate();
+            }
+        }
+
+        private void cerrarTiposVehiculos(object sender, FormClosedEventArgs e)
+        {
+            tiposVehiculos = null;
+        }
+
+        private void PartesDeVehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (partesDeVehiculos== null)
+            {
+                partesDeVehiculos = new MantenimientoPartesDeVehiculos();
+                partesDeVehiculos.MdiParent = this;
+                partesDeVehiculos.FormClosed += new FormClosedEventHandler(cerrarPartesDeVehiculos);
+            }
+            else
+            {
+                partesDeVehiculos.Activate();
+            }
+            
+        }
+
+        private void cerrarPartesDeVehiculos(object sender, FormClosedEventArgs e)
+        {
+            partesDeVehiculos = null;
         }
     }
 }

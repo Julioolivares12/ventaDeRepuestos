@@ -329,7 +329,7 @@ namespace VentaDeRepuestos
                     {
                         while (reader.Read())
                         {
-                            claseDeVehiculo.ID_ClaseVeg = reader["ID_CLASESVEH"].ToString();
+                            claseDeVehiculo.ID = reader["ID_CLASESVEH"].ToString();
                             claseDeVehiculo.Descripcion = reader["DESCRIPCION"].ToString();
                         }
                     }
@@ -658,6 +658,114 @@ namespace VentaDeRepuestos
         }
         #endregion
 
+        #region clases de vehiculos
+        public static List<ClaseDeVehiculo> GetClaseDeVehiculos()
+        {
+            List<ClaseDeVehiculo> claseDeVehiculos = new List<ClaseDeVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM CLASESVEHICULOS", con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var claseDeVehiculo = new ClaseDeVehiculo();
+                            claseDeVehiculo.ID = reader["ID_CLASESVEH"].ToString();
+                            claseDeVehiculo.Descripcion = reader["DESCRIPCION"].ToString();
+                            claseDeVehiculos.Add(claseDeVehiculo);
+                        }
+                        return claseDeVehiculos;
+                    }
+                    else
+                    {
+                        return claseDeVehiculos;
+                    }
+                }
+            }
+        }
+        public static ClaseDeVehiculo GetClaseDeVehiculo (string id)
+        {
+            var p = new ClaseDeVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM CLASESVEHICULOS WHERE ID_CLASESVEH=@ID_CLASESVEH", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_CLASESVEH", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            p.ID = reader["ID_CLASESVEH"].ToString();
+                            p.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
 
+                    }
+                }
+            }
+            return p;
+        }
+
+        public static bool InsertarClaseVehiculo(ClaseDeVehiculo claseDeVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("INSERT INTO CLASESVEHICULOS (ID_CLASESVEH, DESCRIPCION) VALUES(@ID_CLASESVEH,@DESCRIPCION) ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_CLASESVEH",claseDeVehiculo.ID),new SqlParameter("@DESCRIPCION",claseDeVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool ActualizarClaseVehiculo(ClaseDeVehiculo claseDeVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("UPDATE CLASEVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_CLASESVEH=@ID_CLASESVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_CLASESVEH",claseDeVehiculo.ID),new SqlParameter("@DESCRIPCION",claseDeVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool EliminarClaseVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("DELETE FROM CLASEVEHICULOS WHERE ID_CLASESVEH=@ID_CLASESVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_CLASESVEH", id));
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        #endregion
     }
 }
