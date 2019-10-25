@@ -16,10 +16,12 @@ namespace VentaDeRepuestos.formulariosBase
         public CrearModeloVehiculo()
         {
             InitializeComponent();
+
         }
         public virtual bool insertar()
         {
             return false;
+
         }
 
         public virtual bool actualizar()
