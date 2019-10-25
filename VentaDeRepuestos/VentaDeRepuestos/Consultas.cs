@@ -21,6 +21,8 @@ namespace VentaDeRepuestos
         /// <param name="commandType">hay tres tipos de comando StoreProcedure,Text,TableDirect tableDirect es solo para OLE DB </param>
         /// <param name="parameters">parametros de sql</param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
+        /// 
+        
         public static async Task<Int32> ExecuteNonQueryAsync(SqlConnection connection, string commandText
             , CommandType commandType, params SqlParameter[] parameters)
         {
