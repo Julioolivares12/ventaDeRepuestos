@@ -10,7 +10,8 @@ namespace VentaDeRepuestos
 {
     class Conexion
     {
-        private static string conexionString = @"Data Source=DESKTOP-NQSS6M5\SQLEXPRESS;Initial Catalog=repuestos;Integrated Security=True";
+       // private static string conexionString = @"Data Source=DESKTOP-NQSS6M5\SQLEXPRESS;Initial Catalog=repuestos;Integrated Security=True";
+        private static string conexionString = @"Data Source=DESKTOP-LBJM0PF;Initial Catalog=repuestos;Integrated Security=True";
         //obtiene la cadena de conexion del archivo App.config
         private static string con = ConfigurationManager.ConnectionStrings["conexionSQL"].ConnectionString;
 
