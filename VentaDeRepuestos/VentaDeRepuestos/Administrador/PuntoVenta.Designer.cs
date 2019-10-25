@@ -36,14 +36,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnBuscarCliente = new System.Windows.Forms.Button();
+            this.btnClienteNuevo = new System.Windows.Forms.Button();
+            this.btnBuscarItem = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvItems = new System.Windows.Forms.DataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -55,19 +55,18 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnTomar = new System.Windows.Forms.Button();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnDar = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.dgvPagos = new System.Windows.Forms.DataGridView();
+            this.btnPagarImprimir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -135,29 +134,29 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "FECHA VENTA";
             // 
-            // button1
+            // btnBuscarCliente
             // 
-            this.button1.Location = new System.Drawing.Point(232, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.Location = new System.Drawing.Point(232, 68);
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarCliente.TabIndex = 8;
+            this.btnBuscarCliente.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnClienteNuevo
             // 
-            this.button2.Location = new System.Drawing.Point(313, 67);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnClienteNuevo.Location = new System.Drawing.Point(313, 67);
+            this.btnClienteNuevo.Name = "btnClienteNuevo";
+            this.btnClienteNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnClienteNuevo.TabIndex = 9;
+            this.btnClienteNuevo.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnBuscarItem
             // 
-            this.button3.Location = new System.Drawing.Point(427, 117);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(48, 23);
-            this.button3.TabIndex = 12;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBuscarItem.Location = new System.Drawing.Point(427, 117);
+            this.btnBuscarItem.Name = "btnBuscarItem";
+            this.btnBuscarItem.Size = new System.Drawing.Size(48, 23);
+            this.btnBuscarItem.TabIndex = 12;
+            this.btnBuscarItem.UseVisualStyleBackColor = true;
             // 
             // textBox4
             // 
@@ -191,13 +190,13 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "DESCUENTO GLOBAL";
             // 
-            // dataGridView1
+            // dgvItems
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 159);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(837, 150);
-            this.dataGridView1.TabIndex = 15;
+            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Location = new System.Drawing.Point(16, 159);
+            this.dgvItems.Name = "dgvItems";
+            this.dgvItems.Size = new System.Drawing.Size(837, 150);
+            this.dgvItems.TabIndex = 15;
             // 
             // richTextBox1
             // 
@@ -289,23 +288,14 @@
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 25;
             // 
-            // button4
+            // btnTomar
             // 
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 27;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(346, 415);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(117, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "TOMAR PAGO";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnTomar.Location = new System.Drawing.Point(346, 415);
+            this.btnTomar.Name = "btnTomar";
+            this.btnTomar.Size = new System.Drawing.Size(117, 23);
+            this.btnTomar.TabIndex = 28;
+            this.btnTomar.Text = "TOMAR PAGO";
+            this.btnTomar.UseVisualStyleBackColor = true;
             // 
             // textBox9
             // 
@@ -321,14 +311,14 @@
             this.textBox10.Size = new System.Drawing.Size(121, 20);
             this.textBox10.TabIndex = 30;
             // 
-            // button6
+            // btnDar
             // 
-            this.button6.Location = new System.Drawing.Point(346, 445);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(114, 23);
-            this.button6.TabIndex = 31;
-            this.button6.Text = "DAR VUELTO";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnDar.Location = new System.Drawing.Point(346, 445);
+            this.btnDar.Name = "btnDar";
+            this.btnDar.Size = new System.Drawing.Size(114, 23);
+            this.btnDar.TabIndex = 31;
+            this.btnDar.Text = "DAR VUELTO";
+            this.btnDar.UseVisualStyleBackColor = true;
             // 
             // textBox11
             // 
@@ -346,57 +336,56 @@
             this.label12.TabIndex = 32;
             this.label12.Text = "CONSOLIDADO";
             // 
-            // dataGridView2
+            // dgvPagos
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(25, 483);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(494, 98);
-            this.dataGridView2.TabIndex = 34;
+            this.dgvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPagos.Location = new System.Drawing.Point(25, 483);
+            this.dgvPagos.Name = "dgvPagos";
+            this.dgvPagos.Size = new System.Drawing.Size(494, 98);
+            this.dgvPagos.TabIndex = 34;
             // 
-            // button7
+            // btnPagarImprimir
             // 
-            this.button7.Location = new System.Drawing.Point(525, 515);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(117, 23);
-            this.button7.TabIndex = 35;
-            this.button7.Text = "PAGAR E IMPRIMIR";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnPagarImprimir.Location = new System.Drawing.Point(525, 515);
+            this.btnPagarImprimir.Name = "btnPagarImprimir";
+            this.btnPagarImprimir.Size = new System.Drawing.Size(117, 23);
+            this.btnPagarImprimir.TabIndex = 35;
+            this.btnPagarImprimir.Text = "PAGAR E IMPRIMIR";
+            this.btnPagarImprimir.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnLimpiar
             // 
-            this.button8.Location = new System.Drawing.Point(745, 515);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(108, 23);
-            this.button8.TabIndex = 36;
-            this.button8.Text = "LIMPIAR TODO";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Location = new System.Drawing.Point(745, 515);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(108, 23);
+            this.btnLimpiar.TabIndex = 36;
+            this.btnLimpiar.Text = "LIMPIAR TODO";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnPagar
             // 
-            this.button9.Location = new System.Drawing.Point(648, 515);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(91, 23);
-            this.button9.TabIndex = 37;
-            this.button9.Text = "SOLO PAGAR";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnPagar.Location = new System.Drawing.Point(648, 515);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(91, 23);
+            this.btnPagar.TabIndex = 37;
+            this.btnPagar.Text = "SOLO PAGAR";
+            this.btnPagar.UseVisualStyleBackColor = true;
             // 
             // PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 593);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.btnPagar);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnPagarImprimir);
+            this.Controls.Add(this.dgvPagos);
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnDar);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnTomar);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label10);
@@ -408,14 +397,14 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvItems);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnBuscarItem);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClienteNuevo);
+            this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
@@ -426,8 +415,8 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "PuntoVenta";
             this.Text = "PuntoVenta";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,14 +432,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBuscarCliente;
+        private System.Windows.Forms.Button btnClienteNuevo;
+        private System.Windows.Forms.Button btnBuscarItem;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
@@ -462,16 +451,15 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnTomar;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnDar;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.DataGridView dgvPagos;
+        private System.Windows.Forms.Button btnPagarImprimir;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnPagar;
     }
 }
