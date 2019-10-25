@@ -36,14 +36,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnBuscarCliente = new System.Windows.Forms.Button();
-            this.btnClienteNuevo = new System.Windows.Forms.Button();
             this.btnBuscarItem = new System.Windows.Forms.Button();
             this.txtItem = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.UPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_UNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REMOVER = new System.Windows.Forms.DataGridViewButtonColumn();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,20 +67,15 @@
             this.txtConsolidado = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvPagos = new System.Windows.Forms.DataGridView();
-            this.btnPagarImprimir = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnPagar = new System.Windows.Forms.Button();
-            this.UPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECIO_UNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REMOVER = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.METODO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QUITAR = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnPagarImprimir = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.btnClienteNuevo = new System.Windows.Forms.Button();
+            this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).BeginInit();
             this.SuspendLayout();
@@ -145,27 +145,12 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "FECHA VENTA";
             // 
-            // btnBuscarCliente
-            // 
-            this.btnBuscarCliente.Location = new System.Drawing.Point(232, 68);
-            this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscarCliente.TabIndex = 8;
-            this.btnBuscarCliente.UseVisualStyleBackColor = true;
-            // 
-            // btnClienteNuevo
-            // 
-            this.btnClienteNuevo.Location = new System.Drawing.Point(313, 67);
-            this.btnClienteNuevo.Name = "btnClienteNuevo";
-            this.btnClienteNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnClienteNuevo.TabIndex = 9;
-            this.btnClienteNuevo.UseVisualStyleBackColor = true;
-            // 
             // btnBuscarItem
             // 
-            this.btnBuscarItem.Location = new System.Drawing.Point(427, 117);
+            this.btnBuscarItem.Image = global::VentaDeRepuestos.Properties.Resources.lupa1;
+            this.btnBuscarItem.Location = new System.Drawing.Point(427, 111);
             this.btnBuscarItem.Name = "btnBuscarItem";
-            this.btnBuscarItem.Size = new System.Drawing.Size(48, 23);
+            this.btnBuscarItem.Size = new System.Drawing.Size(36, 34);
             this.btnBuscarItem.TabIndex = 12;
             this.btnBuscarItem.UseVisualStyleBackColor = true;
             // 
@@ -216,6 +201,49 @@
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.Size = new System.Drawing.Size(837, 150);
             this.dgvItems.TabIndex = 15;
+            // 
+            // UPC
+            // 
+            this.UPC.Frozen = true;
+            this.UPC.HeaderText = "UPC";
+            this.UPC.Name = "UPC";
+            this.UPC.ReadOnly = true;
+            // 
+            // DESCRIPCION
+            // 
+            this.DESCRIPCION.Frozen = true;
+            this.DESCRIPCION.HeaderText = "DESCRIPCION";
+            this.DESCRIPCION.Name = "DESCRIPCION";
+            this.DESCRIPCION.ReadOnly = true;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.Frozen = true;
+            this.CANTIDAD.HeaderText = "CANTIDAD";
+            this.CANTIDAD.Name = "CANTIDAD";
+            // 
+            // DESCUENTO
+            // 
+            this.DESCUENTO.Frozen = true;
+            this.DESCUENTO.HeaderText = "DESCUENTO";
+            this.DESCUENTO.Name = "DESCUENTO";
+            // 
+            // PRECIO_UNITARIO
+            // 
+            this.PRECIO_UNITARIO.Frozen = true;
+            this.PRECIO_UNITARIO.HeaderText = "PRECIO UNITARIO";
+            this.PRECIO_UNITARIO.Name = "PRECIO_UNITARIO";
+            this.PRECIO_UNITARIO.ReadOnly = true;
+            // 
+            // PRECIO_TOTAL
+            // 
+            this.PRECIO_TOTAL.HeaderText = "PRECIO TOTAL";
+            this.PRECIO_TOTAL.Name = "PRECIO_TOTAL";
+            // 
+            // REMOVER
+            // 
+            this.REMOVER.HeaderText = "REMOVER";
+            this.REMOVER.Name = "REMOVER";
             // 
             // richTextBox1
             // 
@@ -368,76 +396,6 @@
             this.dgvPagos.Size = new System.Drawing.Size(494, 98);
             this.dgvPagos.TabIndex = 34;
             // 
-            // btnPagarImprimir
-            // 
-            this.btnPagarImprimir.Location = new System.Drawing.Point(525, 515);
-            this.btnPagarImprimir.Name = "btnPagarImprimir";
-            this.btnPagarImprimir.Size = new System.Drawing.Size(117, 23);
-            this.btnPagarImprimir.TabIndex = 35;
-            this.btnPagarImprimir.Text = "PAGAR E IMPRIMIR";
-            this.btnPagarImprimir.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(745, 515);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(108, 23);
-            this.btnLimpiar.TabIndex = 36;
-            this.btnLimpiar.Text = "LIMPIAR TODO";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // btnPagar
-            // 
-            this.btnPagar.Location = new System.Drawing.Point(648, 515);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(91, 23);
-            this.btnPagar.TabIndex = 37;
-            this.btnPagar.Text = "SOLO PAGAR";
-            this.btnPagar.UseVisualStyleBackColor = true;
-            // 
-            // UPC
-            // 
-            this.UPC.Frozen = true;
-            this.UPC.HeaderText = "UPC";
-            this.UPC.Name = "UPC";
-            this.UPC.ReadOnly = true;
-            // 
-            // DESCRIPCION
-            // 
-            this.DESCRIPCION.Frozen = true;
-            this.DESCRIPCION.HeaderText = "DESCRIPCION";
-            this.DESCRIPCION.Name = "DESCRIPCION";
-            this.DESCRIPCION.ReadOnly = true;
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.Frozen = true;
-            this.CANTIDAD.HeaderText = "CANTIDAD";
-            this.CANTIDAD.Name = "CANTIDAD";
-            // 
-            // DESCUENTO
-            // 
-            this.DESCUENTO.Frozen = true;
-            this.DESCUENTO.HeaderText = "DESCUENTO";
-            this.DESCUENTO.Name = "DESCUENTO";
-            // 
-            // PRECIO_UNITARIO
-            // 
-            this.PRECIO_UNITARIO.Frozen = true;
-            this.PRECIO_UNITARIO.HeaderText = "PRECIO UNITARIO";
-            this.PRECIO_UNITARIO.Name = "PRECIO_UNITARIO";
-            this.PRECIO_UNITARIO.ReadOnly = true;
-            // 
-            // PRECIO_TOTAL
-            // 
-            this.PRECIO_TOTAL.HeaderText = "PRECIO TOTAL";
-            this.PRECIO_TOTAL.Name = "PRECIO_TOTAL";
-            // 
-            // REMOVER
-            // 
-            this.REMOVER.HeaderText = "REMOVER";
-            this.REMOVER.Name = "REMOVER";
-            // 
             // TIPO
             // 
             this.TIPO.Frozen = true;
@@ -465,6 +423,51 @@
             this.QUITAR.HeaderText = "QUITAR";
             this.QUITAR.Name = "QUITAR";
             this.QUITAR.ReadOnly = true;
+            // 
+            // btnPagarImprimir
+            // 
+            this.btnPagarImprimir.Location = new System.Drawing.Point(525, 515);
+            this.btnPagarImprimir.Name = "btnPagarImprimir";
+            this.btnPagarImprimir.Size = new System.Drawing.Size(117, 23);
+            this.btnPagarImprimir.TabIndex = 35;
+            this.btnPagarImprimir.Text = "PAGAR E IMPRIMIR";
+            this.btnPagarImprimir.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(745, 515);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(108, 23);
+            this.btnLimpiar.TabIndex = 36;
+            this.btnLimpiar.Text = "LIMPIAR TODO";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.Location = new System.Drawing.Point(648, 515);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(91, 23);
+            this.btnPagar.TabIndex = 37;
+            this.btnPagar.Text = "SOLO PAGAR";
+            this.btnPagar.UseVisualStyleBackColor = true;
+            // 
+            // btnClienteNuevo
+            // 
+            this.btnClienteNuevo.BackgroundImage = global::VentaDeRepuestos.Properties.Resources.plus;
+            this.btnClienteNuevo.Location = new System.Drawing.Point(272, 61);
+            this.btnClienteNuevo.Name = "btnClienteNuevo";
+            this.btnClienteNuevo.Size = new System.Drawing.Size(34, 31);
+            this.btnClienteNuevo.TabIndex = 9;
+            this.btnClienteNuevo.UseVisualStyleBackColor = true;
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.BackgroundImage = global::VentaDeRepuestos.Properties.Resources.lupa1;
+            this.btnBuscarCliente.Location = new System.Drawing.Point(232, 61);
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(34, 35);
+            this.btnBuscarCliente.TabIndex = 8;
+            this.btnBuscarCliente.UseVisualStyleBackColor = true;
             // 
             // PuntoVenta
             // 
