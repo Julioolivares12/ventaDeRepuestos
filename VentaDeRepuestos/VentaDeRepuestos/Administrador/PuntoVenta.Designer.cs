@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbDocumento = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCliente = new System.Windows.Forms.TextBox();
@@ -55,27 +55,38 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.btnTomar = new System.Windows.Forms.Button();
+            this.cmbMetodo1 = new System.Windows.Forms.Button();
             this.txtTomar = new System.Windows.Forms.TextBox();
             this.txtDar = new System.Windows.Forms.TextBox();
-            this.btnDar = new System.Windows.Forms.Button();
+            this.cmbMetodo2 = new System.Windows.Forms.Button();
             this.txtConsolidado = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvPagos = new System.Windows.Forms.DataGridView();
             this.btnPagarImprimir = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnPagar = new System.Windows.Forms.Button();
+            this.UPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPCION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_UNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REMOVER = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.METODO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUITAR = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbDocumento
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(105, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cmbDocumento.FormattingEnabled = true;
+            this.cmbDocumento.Location = new System.Drawing.Point(105, 30);
+            this.cmbDocumento.Name = "cmbDocumento";
+            this.cmbDocumento.Size = new System.Drawing.Size(121, 21);
+            this.cmbDocumento.TabIndex = 0;
             // 
             // label1
             // 
@@ -193,6 +204,14 @@
             // dgvItems
             // 
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UPC,
+            this.DESCRIPCION,
+            this.CANTIDAD,
+            this.DESCUENTO,
+            this.PRECIO_UNITARIO,
+            this.PRECIO_TOTAL,
+            this.REMOVER});
             this.dgvItems.Location = new System.Drawing.Point(16, 159);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.Size = new System.Drawing.Size(837, 150);
@@ -288,14 +307,14 @@
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 25;
             // 
-            // btnTomar
+            // cmbMetodo1
             // 
-            this.btnTomar.Location = new System.Drawing.Point(346, 415);
-            this.btnTomar.Name = "btnTomar";
-            this.btnTomar.Size = new System.Drawing.Size(117, 23);
-            this.btnTomar.TabIndex = 28;
-            this.btnTomar.Text = "TOMAR PAGO";
-            this.btnTomar.UseVisualStyleBackColor = true;
+            this.cmbMetodo1.Location = new System.Drawing.Point(346, 415);
+            this.cmbMetodo1.Name = "cmbMetodo1";
+            this.cmbMetodo1.Size = new System.Drawing.Size(117, 23);
+            this.cmbMetodo1.TabIndex = 28;
+            this.cmbMetodo1.Text = "TOMAR PAGO";
+            this.cmbMetodo1.UseVisualStyleBackColor = true;
             // 
             // txtTomar
             // 
@@ -311,14 +330,14 @@
             this.txtDar.Size = new System.Drawing.Size(121, 20);
             this.txtDar.TabIndex = 30;
             // 
-            // btnDar
+            // cmbMetodo2
             // 
-            this.btnDar.Location = new System.Drawing.Point(346, 445);
-            this.btnDar.Name = "btnDar";
-            this.btnDar.Size = new System.Drawing.Size(114, 23);
-            this.btnDar.TabIndex = 31;
-            this.btnDar.Text = "DAR VUELTO";
-            this.btnDar.UseVisualStyleBackColor = true;
+            this.cmbMetodo2.Location = new System.Drawing.Point(346, 445);
+            this.cmbMetodo2.Name = "cmbMetodo2";
+            this.cmbMetodo2.Size = new System.Drawing.Size(114, 23);
+            this.cmbMetodo2.TabIndex = 31;
+            this.cmbMetodo2.Text = "DAR VUELTO";
+            this.cmbMetodo2.UseVisualStyleBackColor = true;
             // 
             // txtConsolidado
             // 
@@ -339,6 +358,11 @@
             // dgvPagos
             // 
             this.dgvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPagos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TIPO,
+            this.METODO,
+            this.VALOR,
+            this.QUITAR});
             this.dgvPagos.Location = new System.Drawing.Point(25, 483);
             this.dgvPagos.Name = "dgvPagos";
             this.dgvPagos.Size = new System.Drawing.Size(494, 98);
@@ -371,6 +395,77 @@
             this.btnPagar.Text = "SOLO PAGAR";
             this.btnPagar.UseVisualStyleBackColor = true;
             // 
+            // UPC
+            // 
+            this.UPC.Frozen = true;
+            this.UPC.HeaderText = "UPC";
+            this.UPC.Name = "UPC";
+            this.UPC.ReadOnly = true;
+            // 
+            // DESCRIPCION
+            // 
+            this.DESCRIPCION.Frozen = true;
+            this.DESCRIPCION.HeaderText = "DESCRIPCION";
+            this.DESCRIPCION.Name = "DESCRIPCION";
+            this.DESCRIPCION.ReadOnly = true;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.Frozen = true;
+            this.CANTIDAD.HeaderText = "CANTIDAD";
+            this.CANTIDAD.Name = "CANTIDAD";
+            // 
+            // DESCUENTO
+            // 
+            this.DESCUENTO.Frozen = true;
+            this.DESCUENTO.HeaderText = "DESCUENTO";
+            this.DESCUENTO.Name = "DESCUENTO";
+            // 
+            // PRECIO_UNITARIO
+            // 
+            this.PRECIO_UNITARIO.Frozen = true;
+            this.PRECIO_UNITARIO.HeaderText = "PRECIO UNITARIO";
+            this.PRECIO_UNITARIO.Name = "PRECIO_UNITARIO";
+            this.PRECIO_UNITARIO.ReadOnly = true;
+            // 
+            // PRECIO_TOTAL
+            // 
+            this.PRECIO_TOTAL.HeaderText = "PRECIO TOTAL";
+            this.PRECIO_TOTAL.Name = "PRECIO_TOTAL";
+            // 
+            // REMOVER
+            // 
+            this.REMOVER.HeaderText = "REMOVER";
+            this.REMOVER.Name = "REMOVER";
+            // 
+            // TIPO
+            // 
+            this.TIPO.Frozen = true;
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            // 
+            // METODO
+            // 
+            this.METODO.Frozen = true;
+            this.METODO.HeaderText = "METODO";
+            this.METODO.Name = "METODO";
+            this.METODO.ReadOnly = true;
+            // 
+            // VALOR
+            // 
+            this.VALOR.Frozen = true;
+            this.VALOR.HeaderText = "VALOR";
+            this.VALOR.Name = "VALOR";
+            this.VALOR.ReadOnly = true;
+            // 
+            // QUITAR
+            // 
+            this.QUITAR.Frozen = true;
+            this.QUITAR.HeaderText = "QUITAR";
+            this.QUITAR.Name = "QUITAR";
+            this.QUITAR.ReadOnly = true;
+            // 
             // PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,10 +477,10 @@
             this.Controls.Add(this.dgvPagos);
             this.Controls.Add(this.txtConsolidado);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.btnDar);
+            this.Controls.Add(this.cmbMetodo2);
             this.Controls.Add(this.txtDar);
             this.Controls.Add(this.txtTomar);
-            this.Controls.Add(this.btnTomar);
+            this.Controls.Add(this.cmbMetodo1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label10);
@@ -412,7 +507,7 @@
             this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbDocumento);
             this.Name = "PuntoVenta";
             this.Text = "PuntoVenta";
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
@@ -424,7 +519,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbDocumento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCliente;
@@ -451,15 +546,26 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button btnTomar;
+        private System.Windows.Forms.Button cmbMetodo1;
         private System.Windows.Forms.TextBox txtTomar;
         private System.Windows.Forms.TextBox txtDar;
-        private System.Windows.Forms.Button btnDar;
+        private System.Windows.Forms.Button cmbMetodo2;
         private System.Windows.Forms.TextBox txtConsolidado;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dgvPagos;
         private System.Windows.Forms.Button btnPagarImprimir;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UPC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCUENTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO_UNITARIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO_TOTAL;
+        private System.Windows.Forms.DataGridViewButtonColumn REMOVER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn METODO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR;
+        private System.Windows.Forms.DataGridViewButtonColumn QUITAR;
     }
 }
