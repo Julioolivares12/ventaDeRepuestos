@@ -15,6 +15,8 @@ namespace VentaDeRepuestos
     {
         private int childFormNumber = 0;
         MantenimientoEmpleado empleados;
+        PuntoVenta punto;
+
         public Menu()
         {
             InitializeComponent();
@@ -131,6 +133,11 @@ namespace VentaDeRepuestos
             this.Close();
             Form1 form = new Form1();
             form.Show();
+        }
+
+        private void puntoDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            punto.Activate();
         }
     }
 }
