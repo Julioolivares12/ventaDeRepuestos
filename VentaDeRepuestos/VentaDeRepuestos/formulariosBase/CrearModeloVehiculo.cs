@@ -30,6 +30,7 @@ namespace VentaDeRepuestos.formulariosBase
         public virtual void cargarDatos()
         {
 
+
         }
     }
 }

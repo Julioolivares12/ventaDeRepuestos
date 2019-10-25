@@ -38,18 +38,15 @@ namespace VentaDeRepuestos
 
         }
 
-        private async void BtnLogin_Click(object sender, EventArgs e)
+        private  void BtnLogin_Click(object sender, EventArgs e)
         {
             var pass = Encriptar.encriptarPassword(txtPassword.Text.Trim());
-            var result = await Consultas.loginAsync(txtCorreo.Text.Trim(), pass);
-
-
-            if (result.Read())
+          
+            var login = Consultas.Login(txtCorreo.Text.Trim(),pass);
+            if(login != null)
             {
                 this.Hide();
-               new Menu().Show();
-                
-
+                new Menu(login.Perfil).Show();
             }
             else
             {

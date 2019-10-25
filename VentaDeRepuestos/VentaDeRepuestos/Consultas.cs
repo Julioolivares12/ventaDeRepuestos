@@ -70,6 +70,31 @@ namespace VentaDeRepuestos
             }
         }
 
+        public static LoginModel Login(string email,string pass)
+        {
+            LoginModel login = new LoginModel();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand(null,con))
+                {
+                    cmd.CommandText = $"Select u.EMAIL, u.PRIMERNOMBRE,u.PRIMERAPELLIDO , p.NOMBRE as PERFIL from USUARIOS as u inner join PERFIL as p on u.ID_PERFIL=p.ID_PERFIL where u.EMAIL='{email}' and u.PASS='{pass}' ";
+                    var rs = cmd.ExecuteReader();
+                    if (rs.HasRows)
+                    {
+                        while (rs.Read())
+                        {
+                            login.Email = rs["EMAIL"].ToString();
+                            login.PrimerApellido = rs["PRIMERAPELLIDO"].ToString();
+                            login.PrimerNombre = rs["PRIMERNOMBRE"].ToString();
+                            login.Perfil = rs["PERFIL"].ToString();
+                        }
+                    }
+                }
+            }
+            return login;
+            
+        }
+
         /// <summary>
         /// ejecuta un excalar para devolver un solo objeto
         /// </summary>
