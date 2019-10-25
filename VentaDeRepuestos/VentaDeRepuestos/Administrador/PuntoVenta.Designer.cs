@@ -31,35 +31,35 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtTracking = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.btnClienteNuevo = new System.Windows.Forms.Button();
             this.btnBuscarItem = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtItem = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtIva = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtMontoTotal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.btnTomar = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtTomar = new System.Windows.Forms.TextBox();
+            this.txtDar = new System.Windows.Forms.TextBox();
             this.btnDar = new System.Windows.Forms.Button();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtConsolidado = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvPagos = new System.Windows.Forms.DataGridView();
             this.btnPagarImprimir = new System.Windows.Forms.Button();
@@ -95,19 +95,19 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "CLIENTE";
             // 
-            // textBox1
+            // txtCliente
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtCliente.Location = new System.Drawing.Point(105, 70);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(121, 20);
+            this.txtCliente.TabIndex = 3;
             // 
-            // textBox2
+            // txtTracking
             // 
-            this.textBox2.Location = new System.Drawing.Point(361, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtTracking.Location = new System.Drawing.Point(361, 30);
+            this.txtTracking.Name = "txtTracking";
+            this.txtTracking.Size = new System.Drawing.Size(121, 20);
+            this.txtTracking.TabIndex = 5;
             // 
             // label3
             // 
@@ -118,12 +118,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "TRACKING N°";
             // 
-            // textBox3
+            // txtFecha
             // 
-            this.textBox3.Location = new System.Drawing.Point(604, 30);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtFecha.Location = new System.Drawing.Point(604, 30);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(121, 20);
+            this.txtFecha.TabIndex = 7;
             // 
             // label4
             // 
@@ -158,12 +158,12 @@
             this.btnBuscarItem.TabIndex = 12;
             this.btnBuscarItem.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // txtItem
             // 
-            this.textBox4.Location = new System.Drawing.Point(141, 120);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(280, 20);
-            this.textBox4.TabIndex = 11;
+            this.txtItem.Location = new System.Drawing.Point(141, 120);
+            this.txtItem.Name = "txtItem";
+            this.txtItem.Size = new System.Drawing.Size(280, 20);
+            this.txtItem.TabIndex = 11;
             // 
             // label5
             // 
@@ -174,12 +174,12 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "BUSCAR REPUESTO";
             // 
-            // textBox5
+            // txtDescuento
             // 
-            this.textBox5.Location = new System.Drawing.Point(604, 116);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(121, 20);
-            this.textBox5.TabIndex = 14;
+            this.txtDescuento.Location = new System.Drawing.Point(604, 116);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.Size = new System.Drawing.Size(121, 20);
+            this.txtDescuento.TabIndex = 14;
             // 
             // label6
             // 
@@ -206,12 +206,12 @@
             this.richTextBox1.TabIndex = 16;
             this.richTextBox1.Text = "";
             // 
-            // textBox6
+            // txtIva
             // 
-            this.textBox6.Location = new System.Drawing.Point(732, 315);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(121, 20);
-            this.textBox6.TabIndex = 18;
+            this.txtIva.Location = new System.Drawing.Point(732, 315);
+            this.txtIva.Name = "txtIva";
+            this.txtIva.Size = new System.Drawing.Size(121, 20);
+            this.txtIva.TabIndex = 18;
             // 
             // label7
             // 
@@ -222,12 +222,12 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "IVA: $";
             // 
-            // textBox7
+            // txtMontoTotal
             // 
-            this.textBox7.Location = new System.Drawing.Point(732, 367);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(121, 20);
-            this.textBox7.TabIndex = 20;
+            this.txtMontoTotal.Location = new System.Drawing.Point(732, 367);
+            this.txtMontoTotal.Name = "txtMontoTotal";
+            this.txtMontoTotal.Size = new System.Drawing.Size(121, 20);
+            this.txtMontoTotal.TabIndex = 20;
             // 
             // label8
             // 
@@ -238,12 +238,12 @@
             this.label8.TabIndex = 19;
             this.label8.Text = "MONTO TOTAL: $";
             // 
-            // textBox8
+            // txtSubtotal
             // 
-            this.textBox8.Location = new System.Drawing.Point(732, 341);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(121, 20);
-            this.textBox8.TabIndex = 22;
+            this.txtSubtotal.Location = new System.Drawing.Point(732, 341);
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(121, 20);
+            this.txtSubtotal.TabIndex = 22;
             // 
             // label9
             // 
@@ -297,19 +297,19 @@
             this.btnTomar.Text = "TOMAR PAGO";
             this.btnTomar.UseVisualStyleBackColor = true;
             // 
-            // textBox9
+            // txtTomar
             // 
-            this.textBox9.Location = new System.Drawing.Point(74, 417);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(121, 20);
-            this.textBox9.TabIndex = 29;
+            this.txtTomar.Location = new System.Drawing.Point(74, 417);
+            this.txtTomar.Name = "txtTomar";
+            this.txtTomar.Size = new System.Drawing.Size(121, 20);
+            this.txtTomar.TabIndex = 29;
             // 
-            // textBox10
+            // txtDar
             // 
-            this.textBox10.Location = new System.Drawing.Point(74, 447);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(121, 20);
-            this.textBox10.TabIndex = 30;
+            this.txtDar.Location = new System.Drawing.Point(74, 447);
+            this.txtDar.Name = "txtDar";
+            this.txtDar.Size = new System.Drawing.Size(121, 20);
+            this.txtDar.TabIndex = 30;
             // 
             // btnDar
             // 
@@ -320,12 +320,12 @@
             this.btnDar.Text = "DAR VUELTO";
             this.btnDar.UseVisualStyleBackColor = true;
             // 
-            // textBox11
+            // txtConsolidado
             // 
-            this.textBox11.Location = new System.Drawing.Point(732, 430);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(121, 20);
-            this.textBox11.TabIndex = 33;
+            this.txtConsolidado.Location = new System.Drawing.Point(732, 430);
+            this.txtConsolidado.Name = "txtConsolidado";
+            this.txtConsolidado.Size = new System.Drawing.Size(121, 20);
+            this.txtConsolidado.TabIndex = 33;
             // 
             // label12
             // 
@@ -380,36 +380,36 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnPagarImprimir);
             this.Controls.Add(this.dgvPagos);
-            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.txtConsolidado);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDar);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.txtDar);
+            this.Controls.Add(this.txtTomar);
             this.Controls.Add(this.btnTomar);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtSubtotal);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtMontoTotal);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtIva);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dgvItems);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtDescuento);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnBuscarItem);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtItem);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnClienteNuevo);
             this.Controls.Add(this.btnBuscarCliente);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtTracking);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
@@ -427,35 +427,35 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtTracking;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.Button btnClienteNuevo;
         private System.Windows.Forms.Button btnBuscarItem;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtItem;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtIva;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtMontoTotal;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtSubtotal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button btnTomar;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtTomar;
+        private System.Windows.Forms.TextBox txtDar;
         private System.Windows.Forms.Button btnDar;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtConsolidado;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dgvPagos;
         private System.Windows.Forms.Button btnPagarImprimir;
