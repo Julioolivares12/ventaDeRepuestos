@@ -20,7 +20,7 @@ namespace VentaDeRepuestos.Administrador
             InitializeComponent();
         }
 
-        private async void BtnCrear_Click(object sender, EventArgs e)
+        private  void BtnCrear_Click(object sender, EventArgs e)
         {
             var pNombre = txtPrimerNombre.Text.Trim();
             var sNombre = txtSegundoNombre.Text.Trim();
@@ -43,7 +43,7 @@ namespace VentaDeRepuestos.Administrador
             user.Telefono = telefono;
             user.FechaNac = fechaNac;
             user.Email = correo;
-            var r = await Consultas.crearEpleadoAsync(user);
+            var r = Consultas.crearEpleadoAsync(user);
             if (r > 0)
             {
                 MessageBox.Show("agregado con exito");

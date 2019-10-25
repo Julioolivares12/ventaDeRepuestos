@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VentaDeRepuestos.Helpers;
 using VentaDeRepuestos.Modelos;
+using System.Collections;
 
 namespace VentaDeRepuestos
 {
@@ -20,7 +21,7 @@ namespace VentaDeRepuestos
         /// <param name="commandType">hay tres tipos de comando StoreProcedure,Text,TableDirect tableDirect es solo para OLE DB </param>
         /// <param name="parameters">parametros de sql</param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
-        public static async Task<Int32> ExecuteNonQuery(SqlConnection connection, string commandText
+        public static async Task<Int32> ExecuteNonQueryAsync(SqlConnection connection, string commandText
             , CommandType commandType, params SqlParameter[] parameters)
         {
             using (connection)
@@ -35,7 +36,20 @@ namespace VentaDeRepuestos
                 }
             }
         }
-
+        public static Int32 ExecuteNonQuery(SqlConnection connection, string commandText
+            , CommandType commandType, params SqlParameter[] parameters)
+        {
+            using (connection)
+            {
+                using (var cmd = new SqlCommand(commandText,connection))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
+                    connection.Open();
+                    return  cmd.ExecuteNonQuery();
+                }
+            }
+        }
         /// <summary>
         /// metodo para hacer login
         /// </summary>
@@ -127,16 +141,18 @@ namespace VentaDeRepuestos
         /// <param name="estado"></param>
         /// <param name="email"></param>
         /// <returns>retorna la cantidad de filas afectadas</returns>
-        public static async Task<Int32> crearEpleadoAsync(Usuario usuario)
+        public static  Int32 crearEpleadoAsync(Usuario usuario)
         {
-            var query = "insert into USUARIOS (ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
+            var query = "insert into USUARIOS (ID_USUARIO,ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
                 "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
-                " VALUES (@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
+                " VALUES (@ID_USUARIO,@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
 
             //parametros para la insercion de datos
             //se hacen las letras en minusculas
             var pass = usuario.PrimerNombre.ToLower() + usuario.PrimerApellido.ToLower() + "123";
             var passE = Encriptar.encriptarPassword(pass);
+            var ID_USER = Guid.NewGuid().ToString();
+            var parameterIDUSUARIO = new SqlParameter("@ID_USUARIO",ID_USER);
             var parameteridCargo = new SqlParameter("@ID_CARGO",usuario.ID_CARGO);
             var parameteridPerfil = new SqlParameter("@ID_PERFIL", usuario.ID_PERFIL);
             var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE",usuario.PrimerNombre);
@@ -152,12 +168,54 @@ namespace VentaDeRepuestos
             var parameterPass = new SqlParameter("@PASS",passE);
 
             
-            var con = await Conexion.conectarAsync();
-            var rows = await ExecuteNonQuery(con,query,CommandType.Text,parameteridCargo
-                ,parameteridPerfil,parameterPrimerNombre,parameterSegundoNombre,parameterPrimerApellido
-                ,parameterSegundoApellido,parameterDireccion,parameterTelefono,parameterFechaNac,parameterSexo,parameterEstado,parameterEmail,parameterPass);
+            var con =  Conexion.conectar();
+            using (con)
+            {
+                var rows = ExecuteNonQuery(con, query, CommandType.Text,parameterIDUSUARIO,parameteridCargo
+                    , parameteridPerfil, parameterPrimerNombre, parameterSegundoNombre, parameterPrimerApellido
+                    , parameterSegundoApellido, parameterDireccion, parameterTelefono, parameterFechaNac, parameterSexo, parameterEstado, parameterEmail, parameterPass);
 
                 return rows;
+            }
+                
+        }
+        public static Int32 ActualizarEpleado(Usuario usuario)
+        {
+            var query = "insert into USUARIOS (ID_USUARIO,ID_CARGO,ID_PERFIL,PRIMERNOMBRE," +
+                "SEGUNDONOMBRE,PRIMERAPELLIDO,SEGUNDOAPELLIDO,DIRECCION,TELEFONO,FECHANAC,SEXO,ESTADO_CIVIL,EMAIL,PASS)" +
+                " VALUES (@ID_USUARIO,@ID_CARGO,@ID_PERFIL,@PRIMERNOMBRE,@SEGUNDONOMBRE,@PRIMERAPELLIDO,@SEGUNDOAPELLIDO,@DIRECCION,@TELEFONO,CONVERT(DATETIME,@FECHANAC),@SEXO,@ESTADO_CIVIL,@EMAIL,@PASS)";
+
+            //parametros para la insercion de datos
+            //se hacen las letras en minusculas
+            var pass = usuario.PrimerNombre.ToLower() + usuario.PrimerApellido.ToLower() + "123";
+            var passE = Encriptar.encriptarPassword(pass);
+            var ID_USER = Guid.NewGuid().ToString();
+            var parameterIDUSUARIO = new SqlParameter("@ID_USUARIO", ID_USER);
+            var parameteridCargo = new SqlParameter("@ID_CARGO", usuario.ID_CARGO);
+            var parameteridPerfil = new SqlParameter("@ID_PERFIL", usuario.ID_PERFIL);
+            var parameterPrimerNombre = new SqlParameter("@PRIMERNOMBRE", usuario.PrimerNombre);
+            var parameterSegundoNombre = new SqlParameter("@SEGUNDONOMBRE", usuario.SegundoNombre);
+            var parameterPrimerApellido = new SqlParameter("@PRIMERAPELLIDO", usuario.PrimerApellido);
+            var parameterSegundoApellido = new SqlParameter("@SEGUNDOAPELLIDO", usuario.SegundoApellido);
+            var parameterDireccion = new SqlParameter("@DIRECCION", usuario.Direccion);
+            var parameterTelefono = new SqlParameter("@TELEFONO", usuario.Telefono);
+            var parameterFechaNac = new SqlParameter("@FECHANAC", usuario.FechaNac);
+            var parameterSexo = new SqlParameter("@SEXO", usuario.Sexo);
+            var parameterEstado = new SqlParameter("@ESTADO_CIVIL", usuario.EstadoCivil);
+            var parameterEmail = new SqlParameter("@EMAIL", usuario.Email);
+            var parameterPass = new SqlParameter("@PASS", passE);
+
+
+            var con = Conexion.conectar();
+            using (con)
+            {
+                var rows = ExecuteNonQuery(con, query, CommandType.Text, parameterIDUSUARIO, parameteridCargo
+                    , parameteridPerfil, parameterPrimerNombre, parameterSegundoNombre, parameterPrimerApellido
+                    , parameterSegundoApellido, parameterDireccion, parameterTelefono, parameterFechaNac, parameterSexo, parameterEstado, parameterEmail, parameterPass);
+
+                return rows;
+            }
+
         }
 
         public static async Task<SqlDataReader> getPerfilesAsync()
@@ -229,5 +287,485 @@ namespace VentaDeRepuestos
                 }
             }
         }
+
+        public static DataTable getModelosVehiculos()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("Select * from MODELOSVEHICULOS",con))
+                {
+                    var adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataTable data = new DataTable();
+                    adapter.Fill(data);
+                    return data;
+                }
+            }
+        }
+        public static DataTable getClasesDeVehiculos()
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("select * from CLASESVEHICULOS",con))
+                {
+                    var adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    var data = new DataTable();
+                    adapter.Fill(data);
+                    return data;
+                }
+            }
+        }
+
+        public static ClaseDeVehiculo GetClaseDeVehiculoByID(string id)
+        {
+            ClaseDeVehiculo claseDeVehiculo = new ClaseDeVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd =new SqlCommand("SELECT * FROM CLASESVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            claseDeVehiculo.ID = reader["ID_CLASESVEH"].ToString();
+                            claseDeVehiculo.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+                    }
+                    
+                }
+            }
+            return claseDeVehiculo;
+        }
+        #region CRUD DE MODELOVEHICULO
+        /// <summary>
+        /// busca un ModeloVehiculo en la bd 
+        /// </summary>
+        /// <param name="id">id de un modelo</param>
+        /// <returns>retorna un objeto de la clase ModeloVehiculo</returns>
+        public static ModeloVehiculo getModeloDeVehiculoByID(string id)
+        {
+            ModeloVehiculo modelo = new ModeloVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM MODELOSVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            modelo.ID = reader["ID_MODELOVEH"].ToString();
+                            modelo.DESCRIPCION = reader["DESCRIPCION"].ToString();
+                        }
+                    }
+                }
+            }
+            return modelo;
+        }
+        public static Int32 insertarModeloVehiculo(ModeloVehiculo modelo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "INSERT INTO MODELOSVEHICULOS (ID_MODELOVEH,DESCRIPCION) VALUES (@ID_MODELOVEH,@DESCRIPCION)";
+                var IDPARAMETER = new SqlParameter("@ID_MODELOVEH",modelo.ID);
+                var DESCRIPCIONPARAMETER = new SqlParameter("@DESCRIPCION",modelo.DESCRIPCION);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,IDPARAMETER,DESCRIPCIONPARAMETER);
+                return r;
+            }
+        }
+
+        public static bool eliminarModeloVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "DELETE FROM MODELOSVEHICULOS WHERE ID_MODELOVEH=@ID_MODELOVEH";
+                var parameter = new SqlParameter("@ID_MODELOVEH",id);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,parameter);
+                if(r != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        
+        public static Int32 actualizarModeloVehiculo(ModeloVehiculo modelo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "UPDATE MODELOSVEHICULOS SET DESCRIPCION WHERE ID_MODELOVEH=@ID_MODELOVEH";
+                
+                var descripcionParameter = new SqlParameter("@ID_MODELOVEH",modelo.ID);
+                var idParameter = new SqlParameter("@ID_MODELOVEH", modelo.ID);
+                var r = ExecuteNonQuery(con,query,CommandType.Text,descripcionParameter,idParameter);
+
+                return r;
+            }
+        }
+        /*
+        public static List<ClaseDeVehiculo> getModelosVehiculos()
+        {
+            List<ClaseDeVehiculo> lista = new List<ClaseDeVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM MODELOSVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var modelo = new ClaseDeVehiculo();
+                            modelo.ID_ClaseVeg = reader["ID_MODELOVEH"].ToString();
+                            modelo.Descripcion = reader["DESCRIPCION"].ToString();
+
+                            lista.Add(modelo);
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+        */
+        #endregion fin crud
+
+
+        #region crud tipovehiculo
+        public static List<TipoVehiculo> GetTipoVehiculos()
+        {
+            var lista = new List<TipoVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("Select * from TIPOVEHICULOS", con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var tipo = new TipoVehiculo();
+                            tipo.ID = reader["ID_TIPOVEH"].ToString();
+                            tipo.Descripcion = reader["DESCRIPCION"].ToString();
+                            lista.Add(tipo);
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+        public static TipoVehiculo GetTipoVehiculoByID(string id)
+        {
+            var tipo = new TipoVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM TIPOVEHICULOS WHERE ID_TIPOVEH=@ID_TIPOVEH",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            tipo.ID = reader["ID_TIPOVEH"].ToString();
+                            tipo.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+
+                    }
+                }
+            }
+            return tipo;
+        }
+        public static bool InsertarTipoVehiculo(TipoVehiculo tipo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "INSERT INTO TIPOVEHICULOS (ID_TIPOVEH,DESCRIPCION) VALUES (@ID_TIPOVEH,@DESCRIPCION)";
+                var ID = Guid.NewGuid().ToString();
+                var IDParam = new SqlParameter("@ID_TIPOVEH",ID);
+                var DescripcionParam = new SqlParameter("@DESCRIPCION",tipo.Descripcion);
+                
+                var ro = ExecuteNonQuery(con,query,CommandType.Text,IDParam,DescripcionParam);
+
+                if (ro > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool ActualizarTipoVehiculo(TipoVehiculo tipo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = "UPDATE TIPOVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_TIPOVEH=@ID_TIPOVEH";
+               
+                var IDParam = new SqlParameter("@ID_TIPOVEH", tipo.ID);
+                var DescripcionParam = new SqlParameter("@DESCRIPCION", tipo.Descripcion);
+
+                var ro = ExecuteNonQuery(con, query, CommandType.Text, IDParam, DescripcionParam);
+
+                if (ro > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool EliminarTipoVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd =new  SqlCommand("DELETE FROM  TIPOVEHICULOS WHERE ID_TIPOVEH=@ID_TIPOVEH",con))
+                {
+                    var parameterID = new SqlParameter("@ID_TIPOVEH", id);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Add(parameterID);
+
+                    var r = cmd.ExecuteNonQuery();
+                    if(r > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+        }
+        #endregion
+
+        #region CRUD PARTES DE VEHICULO
+        public static List<ParteVehiculo> GetParteVehiculos()
+        {
+            List<ParteVehiculo> parteVehiculos = new List<ParteVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM PARTESVEHICULOS",con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var partes = new ParteVehiculo();
+                            partes.ID = reader["ID_PARTEVEH"].ToString();
+                            partes.Descripcion = reader["DESCRIPCION"].ToString();
+                            parteVehiculos.Add(partes);
+                        }
+                        return parteVehiculos;
+                    }
+                    else
+                    {
+                        return parteVehiculos;
+                    }
+                }
+            }
+        }
+        public static ParteVehiculo GetParteVehiculo(string id)
+        {
+            var p = new ParteVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd= new  SqlCommand("SELECT * FROM PARTESVEHICULOS WHERE ID_PARTEVEH=@ID_PARTEVEH", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_PARTEVEH", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            p.ID = reader["ID_PARTEVEH"].ToString();
+                            p.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+                      
+                    }
+                }
+            }
+            return p;
+        }
+
+        public static bool InsertarParteVehiculo(ParteVehiculo parteVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("INSERT INTO PARTESVEHICULOS (ID_PARTEVEH, DESCRIPCION) VALUES(@ID_PARTEVEH,@DESCRIPCION) ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_PARTEVEH",parteVehiculo.ID),new SqlParameter("@DESCRIPCION",parteVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r>0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool ActualizarParteVehiculo(ParteVehiculo parteVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("UPDATE PARTESVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_PARTEVEH=@ID_PARTEVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_PARTEVEH",parteVehiculo.ID),new SqlParameter("@DESCRIPCION",parteVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool EliminarParteVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("DELETE FROM PARTESVEHICULOS WHERE ID_PARTEVEH=@ID_PARTEVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_PARTEVEH", id));
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        #endregion
+
+        #region clases de vehiculos
+        public static List<ClaseDeVehiculo> GetClaseDeVehiculos()
+        {
+            List<ClaseDeVehiculo> claseDeVehiculos = new List<ClaseDeVehiculo>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM CLASESVEHICULOS", con))
+                {
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var claseDeVehiculo = new ClaseDeVehiculo();
+                            claseDeVehiculo.ID = reader["ID_CLASESVEH"].ToString();
+                            claseDeVehiculo.Descripcion = reader["DESCRIPCION"].ToString();
+                            claseDeVehiculos.Add(claseDeVehiculo);
+                        }
+                        return claseDeVehiculos;
+                    }
+                    else
+                    {
+                        return claseDeVehiculos;
+                    }
+                }
+            }
+        }
+        public static ClaseDeVehiculo GetClaseDeVehiculo (string id)
+        {
+            var p = new ClaseDeVehiculo();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM CLASESVEHICULOS WHERE ID_CLASESVEH=@ID_CLASESVEH", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_CLASESVEH", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            p.ID = reader["ID_CLASESVEH"].ToString();
+                            p.Descripcion = reader["DESCRIPCION"].ToString();
+                        }
+
+                    }
+                }
+            }
+            return p;
+        }
+
+        public static bool InsertarClaseVehiculo(ClaseDeVehiculo claseDeVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("INSERT INTO CLASESVEHICULOS (ID_CLASESVEH, DESCRIPCION) VALUES(@ID_CLASESVEH,@DESCRIPCION) ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_CLASESVEH",claseDeVehiculo.ID),new SqlParameter("@DESCRIPCION",claseDeVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool ActualizarClaseVehiculo(ClaseDeVehiculo claseDeVehiculo)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("UPDATE CLASEVEHICULOS SET DESCRIPCION=@DESCRIPCION WHERE ID_CLASESVEH=@ID_CLASESVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    SqlParameter[] sqlParameters =
+                    {
+                       new  SqlParameter("@ID_CLASESVEH",claseDeVehiculo.ID),new SqlParameter("@DESCRIPCION",claseDeVehiculo.Descripcion)
+                    };
+                    cmd.Parameters.AddRange(sqlParameters);
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool EliminarClaseVehiculo(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("DELETE FROM CLASEVEHICULOS WHERE ID_CLASESVEH=@ID_CLASESVEH ", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@ID_CLASESVEH", id));
+                    var r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        #endregion
     }
 }

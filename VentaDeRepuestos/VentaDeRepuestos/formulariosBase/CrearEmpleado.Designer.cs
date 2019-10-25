@@ -279,6 +279,7 @@
             this.btnCrear.TabIndex = 51;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = false;
+            
             // 
             // CrearEmpleado
             // 
