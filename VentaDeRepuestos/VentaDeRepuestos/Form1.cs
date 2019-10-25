@@ -28,9 +28,9 @@ namespace VentaDeRepuestos
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Image image = Image.FromFile("repuestoslogo.jpg");
-            pbLogo.Image = image;
-            pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            //Image image = Image.FromFile("repuestoslogo.jpg");
+            //pbLogo.Image = image;
+           // pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void PbLogo_Click(object sender, EventArgs e)
