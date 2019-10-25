@@ -115,6 +115,7 @@
     <Compile Include="Modelos\ModeloVehiculo.cs" />
     <Compile Include="Modelos\ParteVehiculo.cs" />
     <Compile Include="Modelos\Persona.cs" />
+    <Compile Include="Modelos\Repuesto.cs" />
     <Compile Include="Modelos\TipoVehiculo.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Program.cs" />

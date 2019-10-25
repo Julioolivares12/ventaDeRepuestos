@@ -769,5 +769,146 @@ namespace VentaDeRepuestos
             }
         }
         #endregion
+
+
+        #region crud Repuestos
+        public static List<Repuesto> GetRepuestos()
+        {
+            var repuestos = new List<Repuesto>();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM REPUESTOS", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var mod = new Repuesto();
+                            mod.ID = reader["ID_REPUESTO"].ToString();
+                            mod.ID_PARTEVEH = reader["ID_PARTEVEH"].ToString();
+                            mod.ID_MARCAVEH = reader["ID_MARCAVEH"].ToString();
+                            mod.Nombe = reader["NOMBRE"].ToString();
+                            mod.Descripcion = reader["DESCRIPCION"].ToString();
+                            mod.PrecioCompra = Convert.ToDouble(reader["PRECIOCOMPRA"].ToString());
+                            mod.PrecioVenta = Convert.ToDouble(reader["PRECIOVENTA"].ToString());
+                            mod.Descuento = Convert.ToDouble(reader["DESCUENTO"].ToString());
+                            mod.NumMotor = Convert.ToInt32(reader["NUM_MOTOR"].ToString());
+                            mod.NumChasis = Convert.ToInt32(reader["NUM_CHASIS"].ToString());
+                            mod.NumVin = Convert.ToInt32(reader["NUM_VIN"].ToString());
+
+                            repuestos.Add(mod);
+                        }
+                    }
+                }
+            }
+            return repuestos;
+        }
+        public static Repuesto GetRepuestoByID(string id)
+        {
+            var mod = new Repuesto();
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand("SELECT * FROM REPUESTOS WHERE ID_REPUESTO = @ID_REPUESTO", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID_REPUESTO", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+
+                            mod.ID = reader["ID_REPUESTO"].ToString();
+                            mod.ID_PARTEVEH = reader["ID_PARTEVEH"].ToString();
+                            mod.ID_MARCAVEH = reader["ID_MARCAVEH"].ToString();
+                            mod.Nombe = reader["NOMBRE"].ToString();
+                            mod.Descripcion = reader["DESCRIPCION"].ToString();
+                            mod.PrecioCompra = Convert.ToDouble(reader["PRECIOCOMPRA"].ToString());
+                            mod.PrecioVenta = Convert.ToDouble(reader["PRECIOVENTA"].ToString());
+                            mod.Descuento = Convert.ToDouble(reader["DESCUENTO"].ToString());
+                            mod.NumMotor = Convert.ToInt32(reader["NUM_MOTOR"].ToString());
+                            mod.NumChasis = Convert.ToInt32(reader["NUM_CHASIS"].ToString());
+                            mod.NumVin = Convert.ToInt32(reader["NUM_VIN"].ToString());
+                        }
+                    }
+                }
+            }
+            return mod;
+
+        }
+
+        public static bool InsertarRepuesto(Repuesto re)
+        {
+            using (var con = Conexion.conectar())
+            {
+                var query = $"INSERT INTO REPUESTOS ID_REPUESTO" +
+                    $",ID_PARTEVEH,ID_MARCAVEH,NOMBRE,DESCRIPCION" +
+                    $",PRECIOCOMPRA,PRECIOVENTA,DESCUENTO" +
+                    $",NUM_MOTOR,NUM_CHASIS,NUM_VIN ) VALUES ('{re.ID}','{re.ID_PARTEVEH}','{re.ID_MARCAVEH}','{re.Nombe}','{re.Descripcion}'," +
+                    $"{re.PrecioCompra},{re.PrecioVenta},{re.Descuento},{re.NumMotor},{re.NumChasis},{re.NumVin})";
+
+                using (var cmd = new SqlCommand(query, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    var rs = cmd.ExecuteNonQuery();
+                    if (rs > 0)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        public static bool ActualizarRepuesto(Repuesto re)
+        {
+            var query = "UPDATE REPUESTOS"+
+                 $"SET [ID_PARTEVEH] = '{re.ID_PARTEVEH}'"+
+                 $" ,[ID_MARCAVEH] = '{re.ID_MARCAVEH}'"+
+                 $" ,[NOMBRE] = '{re.Nombe}' "+
+                 $" ,[DESCRIPCION] = '{re.Descripcion}' "+
+                 $" ,[PRECIOCOMPRA] = {re.PrecioCompra}"+
+                 $" ,[PRECIOVENTA] = {re.PrecioVenta}"+
+                 $" ,[DESCUENTO] = {re.Descuento} "+
+                 $",[NUM_MOTOR] = {re.NumMotor}"+
+                 $",[NUM_CHASIS] = {re.NumChasis}"+
+                 $" ,[NUM_VIN] = {re.NumVin} "+
+                 $"WHERE<ID_REPUESTO= '{re.ID}' >";
+
+            using (var con = Conexion.conectar()) 
+            {
+                using (var cmd = new SqlCommand(query,con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    var rs = cmd.ExecuteNonQuery();
+                    if (rs > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        public static bool EliminarRepuesto(string id)
+        {
+            using (var con = Conexion.conectar())
+            {
+                using (var cmd = new SqlCommand($"DELETE FROM REPUESTOS WHERE ID_REPUESTO='{id}'", con))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    var rs = cmd.ExecuteNonQuery();
+                    if (rs > 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+        }
+        #endregion
     }
 }
