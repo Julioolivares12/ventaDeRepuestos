@@ -137,6 +137,9 @@ namespace VentaDeRepuestos
 
         private void puntoDToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            punto = new PuntoVenta();
+            punto.MdiParent = this;
+            punto.Show();
             punto.Activate();
         }
     }
