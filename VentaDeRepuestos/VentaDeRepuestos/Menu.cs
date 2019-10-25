@@ -15,7 +15,6 @@ namespace VentaDeRepuestos
     {
         private int childFormNumber = 0;
         MantenimientoEmpleado empleados;
-        PuntoVenta punto;
         public Menu()
         {
             InitializeComponent();
@@ -132,21 +131,6 @@ namespace VentaDeRepuestos
             this.Close();
             Form1 form = new Form1();
             form.Show();
-        }
-
-        private void puntoDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (punto == null)
-            {
-                punto = new PuntoVenta();
-                punto.MdiParent = this;
-               // punto.FormClosed += new FormClosedEventHandler(cerr);
-                punto.Show();
-            }
-            else
-
-            {punto.Activate();
-            }
         }
     }
 }
