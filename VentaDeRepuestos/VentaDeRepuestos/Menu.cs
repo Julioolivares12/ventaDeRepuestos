@@ -21,6 +21,10 @@ namespace VentaDeRepuestos
         {
             InitializeComponent();
         }
+        public Menu(string perfil)
+        {
+            InitializeComponent();
+        }
 
         private void ShowNewForm(object sender, EventArgs e)
         {
@@ -141,6 +145,11 @@ namespace VentaDeRepuestos
             punto.MdiParent = this;
             punto.Show();
             punto.Activate();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

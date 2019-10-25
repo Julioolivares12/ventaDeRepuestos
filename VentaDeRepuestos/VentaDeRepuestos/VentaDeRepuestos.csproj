@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Modelos\BaseModel.cs" />
     <Compile Include="Modelos\ClaseDeVehiculo.cs" />
+    <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modelos\ModeloVehiculo.cs" />
     <Compile Include="Modelos\ParteVehiculo.cs" />
     <Compile Include="Modelos\Persona.cs" />

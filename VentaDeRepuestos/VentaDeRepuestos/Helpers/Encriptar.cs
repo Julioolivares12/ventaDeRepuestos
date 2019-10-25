@@ -26,6 +26,7 @@ namespace VentaDeRepuestos.Helpers
                 stringBuilder.AppendFormat("{0:x2}", stream[i]);
             }
             return stringBuilder.ToString();
+            
         }
     }
 }
