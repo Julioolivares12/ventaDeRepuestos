@@ -120,6 +120,11 @@
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="repuestosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>repuestosDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Administrador\ActualizarEmpleado.resx">
       <DependentUpon>ActualizarEmpleado.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +182,17 @@
     <Folder Include="Vendedor\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="repuestosDataSet.xsc">
+      <DependentUpon>repuestosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="repuestosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>repuestosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="repuestosDataSet.xss">
+      <DependentUpon>repuestosDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\lupa1.png" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbDocumento = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,12 +77,28 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.btnClienteNuevo = new System.Windows.Forms.Button();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
+            this.repuestosDataSet = new VentaDeRepuestos.repuestosDataSet();
+            this.repuestosDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mETODOSTOMARBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mETODOSTOMARTableAdapter = new VentaDeRepuestos.repuestosDataSetTableAdapters.METODOSTOMARTableAdapter();
+            this.mETODOSDARBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mETODOSDARTableAdapter = new VentaDeRepuestos.repuestosDataSetTableAdapters.METODOSDARTableAdapter();
+            this.tIPODOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tIPODOCTableAdapter = new VentaDeRepuestos.repuestosDataSetTableAdapters.TIPODOCTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repuestosDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repuestosDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mETODOSTOMARBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mETODOSDARBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tIPODOCBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbDocumento
             // 
+            this.cmbDocumento.DataSource = this.tIPODOCBindingSource;
+            this.cmbDocumento.DisplayMember = "DESCRIPCION";
+            this.cmbDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDocumento.FormattingEnabled = true;
             this.cmbDocumento.Location = new System.Drawing.Point(105, 30);
             this.cmbDocumento.Name = "cmbDocumento";
@@ -312,6 +329,9 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DataSource = this.mETODOSTOMARBindingSource;
+            this.comboBox2.DisplayMember = "METODO";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(216, 417);
             this.comboBox2.Name = "comboBox2";
@@ -329,6 +349,9 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DataSource = this.mETODOSDARBindingSource;
+            this.comboBox3.DisplayMember = "METODO";
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(216, 447);
             this.comboBox3.Name = "comboBox3";
@@ -469,6 +492,43 @@
             this.btnBuscarCliente.TabIndex = 8;
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             // 
+            // repuestosDataSet
+            // 
+            this.repuestosDataSet.DataSetName = "repuestosDataSet";
+            this.repuestosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // repuestosDataSetBindingSource
+            // 
+            this.repuestosDataSetBindingSource.DataSource = this.repuestosDataSet;
+            this.repuestosDataSetBindingSource.Position = 0;
+            // 
+            // mETODOSTOMARBindingSource
+            // 
+            this.mETODOSTOMARBindingSource.DataMember = "METODOSTOMAR";
+            this.mETODOSTOMARBindingSource.DataSource = this.repuestosDataSetBindingSource;
+            // 
+            // mETODOSTOMARTableAdapter
+            // 
+            this.mETODOSTOMARTableAdapter.ClearBeforeFill = true;
+            // 
+            // mETODOSDARBindingSource
+            // 
+            this.mETODOSDARBindingSource.DataMember = "METODOSDAR";
+            this.mETODOSDARBindingSource.DataSource = this.repuestosDataSetBindingSource;
+            // 
+            // mETODOSDARTableAdapter
+            // 
+            this.mETODOSDARTableAdapter.ClearBeforeFill = true;
+            // 
+            // tIPODOCBindingSource
+            // 
+            this.tIPODOCBindingSource.DataMember = "TIPODOC";
+            this.tIPODOCBindingSource.DataSource = this.repuestosDataSetBindingSource;
+            // 
+            // tIPODOCTableAdapter
+            // 
+            this.tIPODOCTableAdapter.ClearBeforeFill = true;
+            // 
             // PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,8 +573,14 @@
             this.Controls.Add(this.cmbDocumento);
             this.Name = "PuntoVenta";
             this.Text = "PuntoVenta";
+            this.Load += new System.EventHandler(this.PuntoVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repuestosDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repuestosDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mETODOSTOMARBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mETODOSDARBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tIPODOCBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -570,5 +636,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn METODO;
         private System.Windows.Forms.DataGridViewTextBoxColumn VALOR;
         private System.Windows.Forms.DataGridViewButtonColumn QUITAR;
+        private System.Windows.Forms.BindingSource repuestosDataSetBindingSource;
+        private repuestosDataSet repuestosDataSet;
+        private System.Windows.Forms.BindingSource mETODOSTOMARBindingSource;
+        private repuestosDataSetTableAdapters.METODOSTOMARTableAdapter mETODOSTOMARTableAdapter;
+        private System.Windows.Forms.BindingSource mETODOSDARBindingSource;
+        private repuestosDataSetTableAdapters.METODOSDARTableAdapter mETODOSDARTableAdapter;
+        private System.Windows.Forms.BindingSource tIPODOCBindingSource;
+        private repuestosDataSetTableAdapters.TIPODOCTableAdapter tIPODOCTableAdapter;
     }
 }

@@ -16,5 +16,16 @@ namespace VentaDeRepuestos.Administrador
         {
             InitializeComponent();
         }
+
+        private void PuntoVenta_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'repuestosDataSet.TIPODOC' table. You can move, or remove it, as needed.
+            this.tIPODOCTableAdapter.Fill(this.repuestosDataSet.TIPODOC);
+            // TODO: This line of code loads data into the 'repuestosDataSet.METODOSDAR' table. You can move, or remove it, as needed.
+            this.mETODOSDARTableAdapter.Fill(this.repuestosDataSet.METODOSDAR);
+            // TODO: This line of code loads data into the 'repuestosDataSet.METODOSTOMAR' table. You can move, or remove it, as needed.
+            this.mETODOSTOMARTableAdapter.Fill(this.repuestosDataSet.METODOSTOMAR);
+
+        }
     }
 }
