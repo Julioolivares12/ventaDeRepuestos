@@ -18,12 +18,17 @@ namespace VentaDeRepuestos.Administrador
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-
+            var Crear = new CrearClaseDeVehiculo();
+            Crear.ShowDialog();
+            cargarDatos();
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-
+            var i = getID();
+            var cr = new CrearClaseDeVehiculo(i);
+            cr.ShowDialog();
+            cargarDatos();
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -31,11 +36,18 @@ namespace VentaDeRepuestos.Administrador
             var i = getID();
             var rs = Consultas.EliminarClaseVehiculo(i);
             MostrarMensaje.mostarMensaje(rs,"eliminado con exito");
+            cargarDatos();
         }
 
         private void MantenimientoClacesDeVehiculos_Load(object sender, EventArgs e)
         {
+            cargarDatos();
+        }
 
+        public override void cargarDatos()
+        {
+            base.cargarDatos();
+            gridDatos.DataSource = Consultas.getClasesDeVehiculos();
         }
     }
 }

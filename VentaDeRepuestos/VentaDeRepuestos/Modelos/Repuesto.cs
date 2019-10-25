@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VentaDeRepuestos.Modelos
 {
-    class Repuesto
+    class Repuesto : BaseModel
     {
-        public string ID_Repuesto { get; set; }
+        
         public string ID_PARTEVEH { get; set; }
         public string ID_MARCAVEH { get; set; }
         public string Nombe { get; set; }
